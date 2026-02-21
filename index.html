@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asia Adventure - 6 Month Travel Planner</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .header .stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+        
+        .main-container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+        
+        #map {
+            flex: 1;
+            height: 100%;
+        }
+        
+        .sidebar {
+            width: 400px;
+            background: #16213e;
+            overflow-y: auto;
+            border-left: 1px solid #333;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            background: #1a1a2e;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-header p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        
+        .stop-card {
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .stop-card:hover {
+            background: #1a1a2e;
+        }
+        
+        .stop-card.active {
+            background: #1f4068;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .stop-number {
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .stop-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex: 1;
+            margin-left: 12px;
+        }
+        
+        .stop-country {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-left: 40px;
+        }
+        
+        .stop-duration {
+            background: #333;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+        
+        .stop-details {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .stop-card.active .stop-details {
+            display: block;
+        }
+        
+        .detail-section {
+            margin-bottom: 15px;
+        }
+        
+        .detail-section h4 {
+            font-size: 0.85rem;
+            color: #667eea;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .detail-item {
+            background: #1a1a2e;
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+        }
+        
+        .detail-item .name {
+            font-weight: 500;
+        }
+        
+        .detail-item .info {
+            opacity: 0.7;
+            font-size: 0.8rem;
+        }
+        
+        .detail-item .price {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .travel-info {
+            background: linear-gradient(135deg, #1f4068 0%, #16213e 100%);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .travel-info h4 {
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        
+        .travel-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        
+        .travel-option:last-child {
+            border-bottom: none;
+        }
+        
+        .travel-option .mode {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .travel-option .mode-icon {
+            font-size: 1.2rem;
+        }
+        
+        .travel-option .price-time {
+            text-align: right;
+        }
+        
+        .travel-option .price {
+            color: #4ade80;
+            font-weight: 600;
+        }
+        
+        .travel-option .time {
+            font-size: 0.75rem;
+            opacity: 0.7;
+        }
+        
+        .leaflet-popup-content-wrapper {
+            background: #16213e;
+            color: #eee;
+            border-radius: 12px;
+        }
+        
+        .leaflet-popup-tip {
+            background: #16213e;
+        }
+        
+        .popup-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .popup-content p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .popup-content .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: 50vh;
+            }
+            
+            #map {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>🌏 Asia Adventure</h1>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Months</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">~$8,500</div>
+                <div class="stat-label">Est. Budget</div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <div id="map"></div>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Travel Route</h2>
+                <p>Bangkok → West across Asia</p>
+            </div>
+            <div id="stops-list"></div>
+        </aside>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Travel data - East to West route
+        const travelRoute = [
+            {
+                id: 1,
+                city: "Bangkok",
+                country: "Thailand",
+                lat: 13.7563,
+                lng: 100.5018,
+                duration: "2 weeks",
+                description: "Start your journey in the Land of Smiles",
+                hostels: [
+                    { name: "Lub d Bangkok Siam", price: "$12/night", rating: "9.2", info: "Rooftop pool, central location" },
+                    { name: "NapPark Hostel", price: "$8/night", rating: "8.8", info: "Budget-friendly, Khao San area" },
+                    { name: "Bodega Bangkok", price: "$15/night", rating: "9.0", info: "Party hostel, social vibe" }
+                ],
+                activities: [
+                    "Grand Palace & Wat Phra Kaew",
+                    "Chatuchak Weekend Market",
+                    "Khao San Road nightlife",
+                    "Floating markets day trip",
+                    "Thai cooking class"
+                ],
+                nextTravel: [
+                    { mode: "✈️ Flight", destination: "Chiang Mai", price: "$35-60", duration: "1h 15m" },
+                    { mode: "🚂 Train", destination: "Chiang Mai", price: "$20-45", duration: "10-12h" },
+                    { mode: "🚌 Bus", destination: "Chiang Mai", price: "$15-25", duration: "9-10h" }
+                ]
+            },
+            {
+                id: 2,
+                city: "Chiang Mai",
+                country: "Thailand",
+                lat: 18.7883,
+                lng: 98.9853,
+                duration: "10 days",
+                description: "Temples, mountains, and digital nomad paradise",
+                hostels: [
+                    { name: "Stamps Backpackers", price: "$7/night", rating: "9.1", info: "Best social hostel in town" },
+                    { name: "Hug Hostel", price: "$9/night", rating: "8.9", info: "Quiet area, great breakfast" },
+                    { name: "Green Sleep Hostel", price: "$6/night", rating: "8.5", info: "Budget option, Old City" }
+                ],
+                activities: [
+                    "Doi Suthep Temple",
+                    "Elephant Nature Park",
+                    "Sunday Walking Street",
+                    "Muay Thai training",
+                    "Cooking class"
+                ],
+                nextTravel: [
+                    { mode: "🚌 Bus", destination: "Pai", price: "$5-8", duration: "3h" },
+                    { mode: "✈️ Flight", destination: "Luang Prabang", price: "$80-120", duration: "1h" }
+                ]
+            },
+            {
+                id: 3,
+                city: "Luang Prabang",
+                country: "Laos",
+                lat: 19.8850,
+                lng: 102.1347,
+                duration: "5 days",
+                description: "UNESCO World Heritage town on the Mekong",
+                hostels: [
+                    { name: "Safehouse Hostel", price: "$8/night", rating: "8.7", info: "Social rooftop bar" },
+                    { name: "Downtown Backpackers", price: "$6/night", rating: "8.3", info: "Central, budget-friendly" }
+                ],
+                activities: [
+                    "Alms giving ceremony (sunrise)",
+                    "Kuang Si Waterfalls",
+                    "Night market",
+                    "Pak Ou Caves",
+                    "Mekong sunset cruise"
+                ],
+                nextTravel: [
+                    { mode: "🚌 Bus", destination: "Vang Vieng", price: "$12-18", duration: "5-6h" },
+                    { mode: "⛵ Slow Boat", destination: "Thai Border", price: "$35-50", duration: "2 days" }
+                ]
+            },
+            {
+                id: 4,
+                city: "Hanoi",
+                country: "Vietnam",
+                lat: 21.0285,
+                lng: 105.8542,
+                duration: "1 week",
+                description: "Chaotic charm, incredible food, rich history",
+                hostels: [
+                    { name: "Nexy Hostel", price: "$8/night", rating: "9.3", info: "Best hostel in Hanoi, rooftop" },
+                    { name: "Old Quarter View", price: "$6/night", rating: "8.5", info: "Great location, cheap beer" },
+                    { name: "Hanoi Party Hostel", price: "$10/night", rating: "8.8", info: "Social, pub crawls" }
+                ],
+                activities: [
+                    "Ha Long Bay cruise (2D/1N)",
+                    "Old Quarter exploration",
+                    "Street food tour",
+                    "Ho Chi Minh Mausoleum",
+                    "Train Street"
+                ],
+                nextTravel: [
+                    { mode: "🚂 Train", destination: "Ho Chi Minh City", price: "$35-60", duration: "30-34h" },
+                    { mode: "✈️ Flight", destination: "Ho Chi Minh City", price: "$40-80", duration: "2h" },
+                    { mode: "🚌 Bus", destination: "Ninh Binh", price: "$8-12", duration: "2h" }
+                ]
+            },
+            {
+                id: 5,
+                city: "Ho Chi Minh City",
+                country: "Vietnam",
+                lat: 10.8231,
+                lng: 106.6297,
+                duration: "5 days",
+                description: "Energetic metropolis, war history, amazing food",
+                hostels: [
+                    { name: "The Common Room Project", price: "$9/night", rating: "9.1", info: "Design hostel, great events" },
+                    { name: "Long Hostel", price: "$6/night", rating: "8.6", info: "Budget, District 1" },
+                    { name: "Flipside Hostel", price: "$11/night", rating: "9.0", info: "Rooftop pool, social" }
+                ],
+                activities: [
+                    "Cu Chi Tunnels",
+                    "War Remnants Museum",
+                    "Mekong Delta day trip",
+                    "Ben Thanh Market",
+                    "Bui Vien Walking Street"
+                ],
+                nextTravel: [
+                    { mode: "✈️ Flight", destination: "Phnom Penh", price: "$50-90", duration: "1h" },
+                    { mode: "🚌 Bus", destination: "Phnom Penh", price: "$15-25", duration: "6-7h" }
+                ]
+            },
+            {
+                id: 6,
+                city: "Phnom Penh",
+                country: "Cambodia",
+                lat: 11.5564,
+                lng: 104.9282,
+                duration: "4 days",
+                description: "Sobering history, riverside charm, emerging scene",
+                hostels: [
+                    { name: "Mad Monkey Hostel", price: "$7/night", rating: "8.9", info: "Pool, party vibe" },
+                    { name: "Onederz Hostel", price: "$5/night", rating: "8.4", info: "Riverside, budget" }
+                ],
+                activities: [
+                    "Killing Fields & S-21",
+                    "Royal Palace",
+                    "Riverside sunset drinks",
+                    "Russian Market",
+                    "Street 308 nightlife"
+                ],
+                nextTravel: [
+                    { mode: "🚌 Bus", destination: "Siem Reap", price: "$10-15", duration: "6h" },
+                    { mode: "✈️ Flight", destination: "Siem Reap", price: "$60-100", duration: "45m" }
+                ]
+            },
+            {
+                id: 7,
+                city: "Siem Reap",
+                country: "Cambodia",
+                lat: 13.3671,
+                lng: 103.8448,
+                duration: "5 days",
+                description: "Angkor Wat and ancient temple complexes",
+                hostels: [
+                    { name: "Lub d Siem Reap", price: "$10/night", rating: "9.0", info: "Pool, modern, social" },
+                    { name: "Onederz Hostel", price: "$6/night", rating: "8.5", info: "Pub Street location" },
+                    { name: "Funky Flashpacker", price: "$8/night", rating: "8.7", info: "Pool, good vibes" }
+                ],
+                activities: [
+                    "Angkor Wat sunrise",
+                    "Ta Prohm (Tomb Raider temple)",
+                    "Angkor Thom & Bayon",
+                    "Pub Street nightlife",
+                    "Tonle Sap floating village"
+                ],
+                nextTravel: [
+                    { mode: "✈️ Flight", destination: "Kuala Lumpur", price: "$80-150", duration: "2h" },
+                    { mode: "🚌 Bus", destination: "Bangkok", price: "$25-35", duration: "8-9h" }
+                ]
+            },
+            {
+                id: 8,
+                city: "Kuala Lumpur",
+                country: "Malaysia",
+                lat: 3.1390,
+                lng: 101.6869,
+                duration: "4 days",
+                description: "Modern towers, diverse food, cultural blend",
+                hostels: [
+                    { name: "Reggae Mansion", price: "$8/night", rating: "8.8", info: "Rooftop bar, central" },
+                    { name: "BackHome Hostel", price: "$10/night", rating: "9.1", info: "Heritage building, great breakfast" },
+                    { name: "Step Inn Hostel", price: "$7/night", rating: "8.3", info: "Budget, Chinatown" }
+                ],
+                activities: [
+                    "Petronas Towers",
+                    "Batu Caves",
+                    "Jalan Alor food street",
+                    "KL Tower",
+                    "Day trip to Melaka"
+                ],
+                nextTravel: [
+                    { mode: "🚌 Bus", destination: "Penang", price: "$12-18", duration: "4-5h" },
+                    { mode: "✈️ Flight", destination: "Langkawi", price: "$30-60", duration: "1h" }
+                ]
+            },
+            {
+                id: 9,
+                city: "Penang",
+                country: "Malaysia",
+                lat: 5.4164,
+                lng: 100.3327,
+                duration: "5 days",
+                description: "Best street food in Asia, street art, heritage",
+                hostels: [
+                    { name: "Reggae Penang", price: "$7/night", rating: "8.6", info: "Social, George Town" },
+                    { name: "The 80s Guesthouse", price: "$9/night", rating: "8.9", info: "Heritage, unique rooms" },
+                    { name: "Chulia Heritage Hotel", price: "$12/night", rating: "8.7", info: "Private rooms available" }
+                ],
+                activities: [
+                    "George Town street art",
+                    "Hawker food crawl",
+                    "Kek Lok Si Temple",
+                    "Penang Hill",
+                    "Clan Jetties"
+                ],
+                nextTravel: [
+                    { mode: "⛴️ Ferry", destination: "Langkawi", price: "$20-30", duration: "2.5h" },
+                    { mode: "🚌 Bus", destination: "Thailand border", price: "$15-25", duration: "4h" }
+                ]
+            },
+            {
+                id: 10,
+                city: "Kolkata",
+                country: "India",
+                lat: 22.5726,
+                lng: 88.3639,
+                duration: "5 days",
+                description: "Gateway to India, colonial history, Bengali culture",
+                hostels: [
+                    { name: "Backpacker's Nest", price: "$8/night", rating: "8.5", info: "Good location, helpful staff" },
+                    { name: "The Astor Hotel", price: "$15/night", rating: "8.2", info: "Budget hotel option" }
+                ],
+                activities: [
+                    "Victoria Memorial",
+                    "Howrah Bridge",
+                    "Mother Teresa's House",
+                    "Kumartuli (idol makers)",
+                    "Street food tour"
+                ],
+                nextTravel: [
+                    { mode: "🚂 Train", destination: "Varanasi", price: "$15-35", duration: "12-14h" },
+                    { mode: "✈️ Flight", destination: "Varanasi", price: "$50-100", duration: "1.5h" }
+                ]
+            },
+            {
+                id: 11,
+                city: "Varanasi",
+                country: "India",
+                lat: 25.3176,
+                lng: 82.9739,
+                duration: "4 days",
+                description: "Holiest city, Ganges ghats, spiritual awakening",
+                hostels: [
+                    { name: "Zostel Varanasi", price: "$7/night", rating: "8.8", info: "Great rooftop, Ganga views" },
+                    { name: "Moustache Hostel", price: "$9/night", rating: "8.6", info: "Social, good location" }
+                ],
+                activities: [
+                    "Ganga Aarti ceremony",
+                    "Sunrise boat ride",
+                    "Ghats walking tour",
+                    "Sarnath day trip",
+                    "Lassi at Blue Lassi Shop"
+                ],
+                nextTravel: [
+                    { mode: "🚂 Train", destination: "Agra", price: "$10-25", duration: "11-13h" },
+                    { mode: "✈️ Flight", destination: "Delhi", price: "$45-90", duration: "1.5h" }
+                ]
+            },
+            {
+                id: 12,
+                city: "Jaipur",
+                country: "India",
+                lat: 26.9124,
+                lng: 75.7873,
+                duration: "5 days",
+                description: "Pink City, palaces, Rajasthani culture",
+                hostels: [
+                    { name: "Zostel Jaipur", price: "$8/night", rating: "9.0", info: "Heritage haveli, rooftop" },
+                    { name: "Moustache Jaipur", price: "$7/night", rating: "8.7", info: "Pool, social events" },
+                    { name: "Backpacker Panda", price: "$6/night", rating: "8.4", info: "Budget, central" }
+                ],
+                activities: [
+                    "Amber Fort",
+                    "Hawa Mahal",
+                    "City Palace",
+                    "Nahargarh Fort sunset",
+                    "Shopping at Johari Bazaar"
+                ],
+                nextTravel: [
+                    { mode: "🚂 Train", destination: "Delhi", price: "$8-20", duration: "4-5h" },
+                    { mode: "🚌 Bus", destination: "Udaipur", price: "$12-20", duration: "6-7h" }
+                ]
+            },
+            {
+                id: 13,
+                city: "Delhi",
+                country: "India",
+                lat: 28.6139,
+                lng: 77.2090,
+                duration: "4 days",
+                description: "Capital chaos, Mughal history, incredible food",
+                hostels: [
+                    { name: "Zostel Delhi", price: "$9/night", rating: "8.8", info: "Paharganj, rooftop views" },
+                    { name: "Madpackers Hostel", price: "$10/night", rating: "9.0", info: "South Delhi, modern" },
+                    { name: "Joey's Hostel", price: "$7/night", rating: "8.5", info: "Social, events" }
+                ],
+                activities: [
+                    "Red Fort",
+                    "Qutub Minar",
+                    "Humayun's Tomb",
+                    "Chandni Chowk food walk",
+                    "India Gate"
+                ],
+                nextTravel: [
+                    { mode: "✈️ Flight", destination: "Amritsar", price: "$40-80", duration: "1h" },
+                    { mode: "🚂 Train", destination: "Amritsar", price: "$10-30", duration: "6-7h" }
+                ]
+            },
+            {
+                id: 14,
+                city: "Amritsar",
+                country: "India",
+                lat: 31.6340,
+                lng: 74.8723,
+                duration: "3 days",
+                description: "Golden Temple, Wagah Border, Punjabi hospitality",
+                hostels: [
+                    { name: "Zostel Amritsar", price: "$7/night", rating: "8.6", info: "Near Golden Temple" },
+                    { name: "Jugaadus Hostel", price: "$6/night", rating: "8.3", info: "Budget, rooftop" }
+                ],
+                activities: [
+                    "Golden Temple (24/7)",
+                    "Wagah Border ceremony",
+                    "Jallianwala Bagh",
+                    "Punjabi food feast",
+                    "Partition Museum"
+                ],
+                nextTravel: [
+                    { mode: "🚌 Bus", destination: "Lahore (Pakistan)", price: "$10-15", duration: "1h (+ border)" },
+                    { mode: "✈️ Flight", destination: "Kathmandu", price: "$150-250", duration: "2h" }
+                ]
+            },
+            {
+                id: 15,
+                city: "Kathmandu",
+                country: "Nepal",
+                lat: 27.7172,
+                lng: 85.3240,
+                duration: "1 week",
+                description: "Himalayan gateway, temples, trekking base",
+                hostels: [
+                    { name: "Elbrus Home", price: "$8/night", rating: "9.2", info: "Thamel, great vibe" },
+                    { name: "Zostel Kathmandu", price: "$9/night", rating: "8.8", info: "Social, rooftop" },
+                    { name: "Kathmandu Madhuban", price: "$6/night", rating: "8.4", info: "Budget, helpful" }
+                ],
+                activities: [
+                    "Swayambhunath (Monkey Temple)",
+                    "Boudhanath Stupa",
+                    "Durbar Square",
+                    "Day trip to Nagarkot",
+                    "Thamel exploration"
+                ],
+                nextTravel: [
+                    { mode: "✈️ Flight", destination: "Dubai", price: "$200-350", duration: "4.5h" },
+                    { mode: "✈️ Flight", destination: "Istanbul", price: "$300-500", duration: "7h" }
+                ]
+            }
+        ];
+        
+        // Initialize map
+        const map = L.map('map').setView([20, 95], 4);
+        
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // Custom marker icon
+        function createMarkerIcon(number) {
+            return L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: bold;
+                    font-size: 14px;
+                    border: 3px solid white;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                ">${number}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            });
+        }
+        
+        // Add markers and route
+        const markers = [];
+        const routePoints = [];
+        
+        travelRoute.forEach((stop, index) => {
+            const marker = L.marker([stop.lat, stop.lng], {
+                icon: createMarkerIcon(stop.id)
+            }).addTo(map);
+            
+            marker.bindPopup(`
+                <div class="popup-content">
+                    <h3>${stop.city}</h3>
+                    <p>${stop.country} • ${stop.duration}</p>
+                    <p>${stop.description}</p>
+                </div>
+            `);
+            
+            marker.on('click', () => {
+                selectStop(stop.id);
+            });
+            
+            markers.push(marker);
+            routePoints.push([stop.lat, stop.lng]);
+        });
+        
+        // Draw route line
+        const routeLine = L.polyline(routePoints, {
+            color: '#667eea',
+            weight: 3,
+            opacity: 0.7,
+            dashArray: '10, 10'
+        }).addTo(map);
+        
+        // Render sidebar
+        function renderSidebar() {
+            const container = document.getElementById('stops-list');
+            container.innerHTML = travelRoute.map(stop => `
+                <div class="stop-card" data-id="${stop.id}" onclick="selectStop(${stop.id})">
+                    <div class="stop-header">
+                        <div style="display: flex; align-items: center;">
+                            <div class="stop-number">${stop.id}</div>
+                            <div class="stop-name">${stop.city}</div>
+                        </div>
+                        <div class="stop-duration">${stop.duration}</div>
+                    </div>
+                    <div class="stop-country">${stop.country}</div>
+                    
+                    <div class="stop-details">
+                        <div class="detail-section">
+                            <h4>🛏️ Hostels</h4>
+                            ${stop.hostels.map(h => `
+                                <div class="detail-item">
+                                    <div class="name">${h.name}</div>
+                                    <div class="info">${h.info}</div>
+                                    <div class="price">${h.price} • ⭐ ${h.rating}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>🎯 Things to Do</h4>
+                            ${stop.activities.map(a => `
+                                <div class="detail-item">
+                                    <div class="name">${a}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        
+                        ${stop.nextTravel ? `
+                            <div class="travel-info">
+                                <h4>🚀 Getting to Next Stop</h4>
+                                ${stop.nextTravel.map(t => `
+                                    <div class="travel-option">
+                                        <div class="mode">
+                                            <span class="mode-icon">${t.mode.split(' ')[0]}</span>
+                                            <span>${t.mode.split(' ')[1]} to ${t.destination}</span>
+                                        </div>
+                                        <div class="price-time">
+                                            <div class="price">${t.price}</div>
+                                            <div class="time">${t.duration}</div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Select stop
+        function selectStop(id) {
+            // Update cards
+            document.querySelectorAll('.stop-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            const activeCard = document.querySelector(`.stop-card[data-id="${id}"]`);
+            if (activeCard) {
+                activeCard.classList.add('active');
+                activeCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Pan map to location
+            const stop = travelRoute.find(s => s.id === id);
+            if (stop) {
+                map.setView([stop.lat, stop.lng], 8, { animate: true });
+                markers[id - 1].openPopup();
+            }
+        }
+        
+        // Initialize
+        renderSidebar();
+    </script>
+</body>
+</html>
