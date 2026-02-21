@@ -56,6 +56,7 @@
         .travel-option:last-child { border-bottom: none; }
         .travel-option .price { color: #4ade80; font-weight: 600; }
         .travel-option .time { font-size: 0.7rem; opacity: 0.7; }
+        .travel-route { font-size: 0.7rem; opacity: 0.7; padding: 6px 0 8px 0; border-bottom: 1px solid #333; margin-bottom: 4px; line-height: 1.4; }
         .leaflet-popup-content-wrapper { background: #16213e; color: #eee; border-radius: 12px; }
         .leaflet-popup-tip { background: #16213e; }
         .popup-content h3 { font-size: 1rem; margin-bottom: 3px; }
@@ -232,7 +233,7 @@
                     { name: "Pai Circus Hostel", price: "$6/night", rating: "9.0", info: "Pool, fire shows" }
                 ],
                 activities: ["Pai Canyon sunset", "Hot springs", "Pam Bok Waterfall", "Night market", "Rent a scooter"],
-                nextTravel: [{ mode: "✈️ Flight", destination: "Krabi (via CM)", price: "$50-90", duration: "2h" }]
+                nextTravel: [{ mode: "✈️ Flight", destination: "Krabi", price: "$50-90", duration: "2h", route: "Minivan Pai → Chiang Mai Airport (3h) • Flight: Chiang Mai (CNX) → Krabi (KBV) direct" }]
             },
             // THAILAND - SOUTHERN ISLANDS (Best Feb-April!)
             {
@@ -273,7 +274,7 @@
                     { name: "Bloom Cafe & Hostel", price: "$18/night", rating: "8.8", info: "Walking street (splurge)" }
                 ],
                 activities: ["Sunrise Beach", "Snorkeling (best in Thailand!)", "Walking street", "Island hopping", "Sunset Beach bars"],
-                nextTravel: [{ mode: "⛴️ + 🚌", destination: "Surat Thani", price: "$40-60", duration: "6-7h" }]
+                nextTravel: [{ mode: "⛴️ + 🚌", destination: "Surat Thani", price: "$40-60", duration: "6-7h", route: "Speedboat from Pattaya Beach → Pak Bara Pier (1.5h) • Bus: Pak Bara → Surat Thani town/airport" }]
             },
             {
                 id: 8, city: "Koh Tao", country: "Thailand", lat: 10.0956, lng: 99.8403, duration: "4 days",
@@ -293,7 +294,7 @@
                     { name: "Chill Inn", price: "$10/night", rating: "8.6", info: "Quieter, Thong Sala" }
                 ],
                 activities: ["Full Moon Party (if timing!)", "Secret Beach", "Bottle Beach", "Yoga retreat", "Waterfalls"],
-                nextTravel: [{ mode: "⛴️ + ✈️", destination: "Luang Prabang", price: "$80-150", duration: "5-6h total" }]
+                nextTravel: [{ mode: "⛴️ + ✈️", destination: "Luang Prabang", price: "$80-150", duration: "5-6h total", route: "Ferry from Thong Sala Pier → Surat Thani (2h) • Flight: Surat Thani (URT) → Bangkok (BKK) → Luang Prabang (LPQ)" }]
             },
             // LAOS
             {
@@ -342,7 +343,7 @@
                     { name: "Cheers Hostel Tours", price: "$170-200/4 days", rating: "9.2", info: "Easy rider option if you can't ride" }
                 ],
                 activities: ["Ma Pi Leng Pass (king of passes!)", "Dong Van karst plateau UNESCO", "Lung Cu Flag Tower (China border)", "Ethnic minority homestays", "Du Gia waterfall swim"],
-                nextTravel: [{ mode: "🚌 Sleeper Bus", destination: "Hanoi (then Ha Long)", price: "$12-15", duration: "6-7h" }]
+                nextTravel: [{ mode: "🚌 Sleeper Bus", destination: "Hanoi", price: "$12-15", duration: "6-7h", route: "Sleeper bus Ha Giang → Hanoi My Dinh station • Then book Ha Long cruise from Hanoi (most include pickup)" }]
             },
             {
                 id: 15, city: "Ha Long Bay", country: "Vietnam", lat: 20.9101, lng: 107.1839, duration: "2 days",
@@ -415,7 +416,7 @@
                     { name: "Onederz Kampot", price: "$6/night", rating: "8.8", info: "River views" }
                 ],
                 activities: ["Bokor Mountain", "Pepper farm tour", "River kayaking", "Kep crab market"],
-                nextTravel: [{ mode: "✈️ Flight", destination: "Kuala Lumpur", price: "$60-120", duration: "1.5h" }]
+                nextTravel: [{ mode: "✈️ Flight", destination: "Kuala Lumpur", price: "$60-120", duration: "1.5h", route: "Bus/taxi Kampot → Phnom Penh Airport (PNH) 2.5h • Flight: Phnom Penh → KL (KUL)" }]
             },
             // MALAYSIA
             {
@@ -452,7 +453,7 @@
                     { name: "The 80s Guesthouse", price: "$9/night", rating: "8.9", info: "Heritage" }
                 ],
                 activities: ["George Town street art", "Hawker food crawl", "Kek Lok Si Temple", "Penang Hill"],
-                nextTravel: [{ mode: "⛴️ Ferry", destination: "Langkawi", price: "$20-30", duration: "2.5h" }]
+                nextTravel: [{ mode: "⛴️ Ferry", destination: "Langkawi", price: "$20-30", duration: "2.5h", route: "Ferry from Penang Swettenham Pier (Georgetown) → Kuah Jetty, Langkawi" }]
             },
             {
                 id: 27, city: "Langkawi", country: "Malaysia", lat: 6.3500, lng: 99.8000, duration: "3 days",
@@ -523,7 +524,7 @@
                     { name: "Bingin Green View", price: "$12/night", rating: "8.6", info: "Budget, near beach" }
                 ],
                 activities: ["Uluwatu Temple & Kecak dance", "Single Fin Sunday", "Padang Padang beach", "Surfing"],
-                nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Gili Islands", price: "$30-50", duration: "1.5-2h" }]
+                nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Gili Islands", price: "$30-50", duration: "1.5-2h", route: "Fast boat from Padang Bai or Sanur Harbor → Gili Trawangan" }]
             },
             {
                 id: 34, city: "Gili Trawangan", country: "Indonesia", lat: -8.3510, lng: 116.0346, duration: "3 days",
@@ -550,7 +551,7 @@
                     { name: "Kuta Lombok Hostel", price: "$10/night", rating: "8.8", info: "Kuta beach" }
                 ],
                 activities: ["Kuta Lombok beaches", "Tanjung Aan", "Surf Gerupuk", "Pink Beach day trip"],
-                nextTravel: [{ mode: "✈️ Flight", destination: "Labuan Bajo", price: "$60-120", duration: "1h" }]
+                nextTravel: [{ mode: "✈️ Flight", destination: "Labuan Bajo", price: "$60-120", duration: "1h", route: "Flight from Lombok International (LOP) → Komodo Airport (LBJ)" }]
             },
             {
                 id: 37, city: "Labuan Bajo (Komodo)", country: "Indonesia", lat: -8.4500, lng: 119.8833, duration: "3 days",
@@ -606,7 +607,7 @@
                         <div class="stop-details">
                             <div class="detail-section"><h4>🛏️ Hostels</h4>${stop.hostels.map(h=>`<div class="detail-item"><div class="name">${h.name}</div><div class="info">${h.info}</div><div class="price">${h.price} • ⭐${h.rating}</div></div>`).join('')}</div>
                             <div class="detail-section"><h4>🎯 Things to Do</h4>${stop.activities.map(a=>`<div class="detail-item"><div class="name">${a}</div></div>`).join('')}</div>
-                            ${stop.nextTravel?`<div class="travel-info"><h4>🚀 Next Stop</h4>${stop.nextTravel.map(t=>`<div class="travel-option"><div>${t.mode} → ${t.destination}</div><div><span class="price">${t.price}</span><span class="time"> • ${t.duration}</span></div></div>`).join('')}</div>`:''}
+                            ${stop.nextTravel?`<div class="travel-info"><h4>🚀 Next Stop</h4>${stop.nextTravel.map(t=>`<div class="travel-option"><div>${t.mode} → ${t.destination}</div><div><span class="price">${t.price}</span><span class="time"> • ${t.duration}</span></div></div>${t.route?`<div class="travel-route">${t.route}</div>`:''}`).join('')}</div>`:''}
                         </div></div>`;
                 });
                 html += '</div>';
