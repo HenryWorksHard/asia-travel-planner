@@ -60,6 +60,85 @@
         .leaflet-popup-tip { background: #16213e; }
         .popup-content h3 { font-size: 1rem; margin-bottom: 3px; }
         .popup-content p { font-size: 0.8rem; opacity: 0.8; }
+        
+        /* Route Overview Button */
+        .route-overview-btn { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            border: none; 
+            color: white; 
+            padding: 10px 18px; 
+            border-radius: 10px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .route-overview-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+        
+        /* Modal Overlay */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        
+        /* Modal Content */
+        .modal-content {
+            background: #16213e;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 1px solid #333;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: modalSlideIn 0.3s ease;
+        }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: #16213e;
+            z-index: 10;
+        }
+        .modal-header h2 { font-size: 1.3rem; margin: 0; }
+        .modal-close {
+            background: #333;
+            border: none;
+            color: #eee;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: #444; }
+        .modal-body { padding: 20px; }
+        
         @media (max-width: 768px) {
             .main-container { flex-direction: column; }
             .sidebar { width: 100%; height: 50vh; }
@@ -76,16 +155,22 @@
             <div class="stat"><div class="stat-value">37</div><div class="stat-label">Stops</div></div>
             <div class="stat"><div class="stat-value">~$7,200</div><div class="stat-label">Est. Budget</div></div>
         </div>
+        <button class="route-overview-btn" onclick="toggleModal()">
+            🗺️ Route & Visas
+        </button>
     </header>
     
-    <div class="main-container">
-        <div id="map"></div>
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h2>Travel Route</h2>
-                <p>Starting February 25, 2026</p>
+    <!-- Route Overview Modal -->
+    <div class="modal-overlay" id="routeModal" onclick="closeModalOutside(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>🗺️ Travel Route</h2>
+                <button class="modal-close" onclick="toggleModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 0.95rem; margin-bottom: 12px;">Starting <strong>February 25, 2026</strong></p>
                 <div class="weather-note">☀️ <strong>Perfect timing!</strong> Feb-April is dry season for Thai islands (both coasts)</div>
-                <div class="visa-section">
+                <div class="visa-section" style="margin-top: 15px;">
                     <h3>🛂 Visa Requirements (UK Passport)</h3>
                     <div class="visa-row free"><span class="country">🇹🇭 Thailand</span><span class="type">Visa-free 60 days</span><span class="cost">FREE</span></div>
                     <div class="visa-row paid"><span class="country">🇱🇦 Laos</span><span class="type">Visa on Arrival</span><span class="cost">$35</span></div>
@@ -101,6 +186,16 @@
                         • Official Vietnam site: evisa.xuatnhapcanh.gov.vn
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div id="map"></div>
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>📍 Itinerary</h2>
+                <p>Click a stop to see details</p>
             </div>
             <div id="stops-list"></div>
         </aside>
@@ -527,6 +622,26 @@
             if (stop) { map.setView([stop.lat, stop.lng], 8, { animate: true }); markers[id - 1].openPopup(); }
         }
         renderSidebar();
+        
+        // Modal functions
+        function toggleModal() {
+            const modal = document.getElementById('routeModal');
+            modal.classList.toggle('active');
+        }
+        function closeModalOutside(event) {
+            if (event.target.id === 'routeModal') {
+                toggleModal();
+            }
+        }
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('routeModal');
+                if (modal.classList.contains('active')) {
+                    toggleModal();
+                }
+            }
+        });
     </script>
 </body>
 </html>
