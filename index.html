@@ -62,7 +62,7 @@
         <div class="stats">
             <div class="stat"><div class="stat-value">6</div><div class="stat-label">Months</div></div>
             <div class="stat"><div class="stat-value">8</div><div class="stat-label">Countries</div></div>
-            <div class="stat"><div class="stat-value">37</div><div class="stat-label">Stops</div></div>
+            <div class="stat"><div class="stat-value">36</div><div class="stat-label">Stops</div></div>
             <div class="stat"><div class="stat-value">~$8,500</div><div class="stat-label">Est. Budget</div></div>
         </div>
     </header>
@@ -91,19 +91,12 @@
                     { name: "NapPark Hostel", price: "$8/night", rating: "8.8", info: "Khao San area" }
                 ],
                 activities: ["Grand Palace & Wat Phra Kaew", "Chatuchak Weekend Market", "Khao San Road", "Floating markets"],
-                nextTravel: [{ mode: "🚂 Train", destination: "Ayutthaya", price: "$2-5", duration: "1.5h" }]
+                nextTravel: [{ mode: "🚂 Train", destination: "Chiang Mai", price: "$18-40", duration: "10h (sleeper train)" }]
             },
             {
-                id: 2, city: "Ayutthaya", country: "Thailand", lat: 14.3692, lng: 100.5877, duration: "2 days",
-                description: "Ancient temple ruins, UNESCO site",
-                hostels: [
-                    { name: "Baan Are Gong", price: "$8/night", rating: "9.0", info: "Riverside, bikes included" }
-                ],
-                activities: ["Wat Mahathat (Buddha head in tree)", "Cycle the ruins", "Wat Chaiwatthanaram", "Night market"],
-                nextTravel: [{ mode: "🚂 Train", destination: "Chiang Mai", price: "$18-40", duration: "10h" }]
             },
             {
-                id: 3, city: "Chiang Mai", country: "Thailand", lat: 18.7883, lng: 98.9853, duration: "5 days",
+                id: 2, city: "Chiang Mai", country: "Thailand", lat: 18.7883, lng: 98.9853, duration: "5 days",
                 description: "Temples, mountains, digital nomad hub",
                 hostels: [
                     { name: "Stamps Backpackers", price: "$7/night", rating: "9.1", info: "Best social hostel" },
@@ -113,7 +106,7 @@
                 nextTravel: [{ mode: "🚌 Minivan", destination: "Pai", price: "$5-8", duration: "3h" }]
             },
             {
-                id: 4, city: "Pai", country: "Thailand", lat: 19.3597, lng: 98.4408, duration: "4 days",
+                id: 3, city: "Pai", country: "Thailand", lat: 19.3597, lng: 98.4408, duration: "4 days",
                 description: "Hippie mountain town, chill vibes",
                 hostels: [
                     { name: "Pai Circus Hostel", price: "$6/night", rating: "9.0", info: "Pool, fire shows" }
@@ -123,7 +116,7 @@
             },
             // THAILAND - SOUTHERN ISLANDS (Best Feb-April!)
             {
-                id: 5, city: "Krabi / Ao Nang", country: "Thailand", lat: 8.0863, lng: 98.9063, duration: "3 days",
+                id: 4, city: "Krabi / Ao Nang", country: "Thailand", lat: 8.0863, lng: 98.9063, duration: "3 days",
                 description: "Gateway to islands, limestone cliffs",
                 hostels: [
                     { name: "Pak-Up Hostel", price: "$10/night", rating: "9.2", info: "Pool, rooftop bar" },
@@ -133,7 +126,7 @@
                 nextTravel: [{ mode: "⛴️ Ferry", destination: "Koh Phi Phi", price: "$12-18", duration: "1.5h" }]
             },
             {
-                id: 6, city: "Koh Phi Phi", country: "Thailand", lat: 7.7407, lng: 98.7784, duration: "3 days",
+                id: 5, city: "Koh Phi Phi", country: "Thailand", lat: 7.7407, lng: 98.7784, duration: "3 days",
                 description: "Famous party island, Maya Bay",
                 hostels: [
                     { name: "Ibiza House", price: "$15/night", rating: "8.5", info: "Party central" },
@@ -143,7 +136,7 @@
                 nextTravel: [{ mode: "⛴️ Ferry", destination: "Koh Lanta", price: "$10-15", duration: "1h" }]
             },
             {
-                id: 7, city: "Koh Lanta", country: "Thailand", lat: 7.5357, lng: 99.0694, duration: "4 days",
+                id: 6, city: "Koh Lanta", country: "Thailand", lat: 7.5357, lng: 99.0694, duration: "5 days",
                 description: "Chill alternative, long beaches",
                 hostels: [
                     { name: "The Lanta Hostel", price: "$10/night", rating: "8.9", info: "Pool, social but chill" },
@@ -153,7 +146,7 @@
                 nextTravel: [{ mode: "⛴️ Ferry", destination: "Koh Lipe", price: "$35-50", duration: "4-5h" }]
             },
             {
-                id: 8, city: "Koh Lipe", country: "Thailand", lat: 6.4833, lng: 99.3000, duration: "3 days",
+                id: 7, city: "Koh Lipe", country: "Thailand", lat: 6.4833, lng: 99.3000, duration: "3 days",
                 description: "Thai Maldives, crystal clear water",
                 hostels: [
                     { name: "Bloom Cafe & Hostel", price: "$18/night", rating: "8.8", info: "Walking street" },
@@ -163,7 +156,7 @@
                 nextTravel: [{ mode: "⛴️ + 🚌", destination: "Surat Thani", price: "$40-60", duration: "6-7h" }]
             },
             {
-                id: 9, city: "Koh Tao", country: "Thailand", lat: 10.0956, lng: 99.8403, duration: "4 days",
+                id: 8, city: "Koh Tao", country: "Thailand", lat: 10.0956, lng: 99.8403, duration: "4 days",
                 description: "Diving paradise, small island vibes",
                 hostels: [
                     { name: "Goodtime Beach", price: "$12/night", rating: "9.0", info: "Beachfront, social" },
@@ -173,7 +166,7 @@
                 nextTravel: [{ mode: "⛴️ Ferry", destination: "Koh Phangan", price: "$8-12", duration: "30m" }]
             },
             {
-                id: 10, city: "Koh Phangan", country: "Thailand", lat: 9.7500, lng: 100.0333, duration: "4 days",
+                id: 9, city: "Koh Phangan", country: "Thailand", lat: 9.7500, lng: 100.0333, duration: "5 days",
                 description: "Full Moon Party, yoga retreats",
                 hostels: [
                     { name: "Slumber Party", price: "$12/night", rating: "8.8", info: "Haad Rin, party hostel" },
@@ -184,7 +177,7 @@
             },
             // LAOS
             {
-                id: 11, city: "Luang Prabang", country: "Laos", lat: 19.8850, lng: 102.1347, duration: "4 days",
+                id: 10, city: "Luang Prabang", country: "Laos", lat: 19.8850, lng: 102.1347, duration: "4 days",
                 description: "UNESCO town on the Mekong",
                 hostels: [
                     { name: "Safehouse Hostel", price: "$8/night", rating: "8.7", info: "Rooftop bar" }
@@ -193,7 +186,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Vang Vieng", price: "$12-18", duration: "5-6h" }]
             },
             {
-                id: 12, city: "Vang Vieng", country: "Laos", lat: 18.9220, lng: 102.4473, duration: "3 days",
+                id: 11, city: "Vang Vieng", country: "Laos", lat: 18.9220, lng: 102.4473, duration: "3 days",
                 description: "Karst mountains, tubing, adventure",
                 hostels: [
                     { name: "Nana Backpackers", price: "$6/night", rating: "8.8", info: "River views, social" }
@@ -202,7 +195,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Vientiane", price: "$8-12", duration: "3-4h" }]
             },
             {
-                id: 13, city: "Vientiane", country: "Laos", lat: 17.9757, lng: 102.6331, duration: "2 days",
+                id: 12, city: "Vientiane", country: "Laos", lat: 17.9757, lng: 102.6331, duration: "2 days",
                 description: "Chill capital, Mekong riverside",
                 hostels: [
                     { name: "Dream Home Hostel", price: "$5/night", rating: "8.6", info: "Budget, central" }
@@ -212,7 +205,7 @@
             },
             // VIETNAM
             {
-                id: 14, city: "Hanoi", country: "Vietnam", lat: 21.0285, lng: 105.8542, duration: "4 days",
+                id: 13, city: "Hanoi", country: "Vietnam", lat: 21.0285, lng: 105.8542, duration: "4 days",
                 description: "Chaotic charm, incredible food",
                 hostels: [
                     { name: "Nexy Hostel", price: "$8/night", rating: "9.3", info: "Best hostel in Hanoi" }
@@ -221,7 +214,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Ha Long Bay", price: "$15-25", duration: "3-4h" }]
             },
             {
-                id: 15, city: "Ha Long Bay", country: "Vietnam", lat: 20.9101, lng: 107.1839, duration: "2 days",
+                id: 14, city: "Ha Long Bay", country: "Vietnam", lat: 20.9101, lng: 107.1839, duration: "2 days",
                 description: "Limestone karsts, boat cruise",
                 hostels: [
                     { name: "Overnight Cruise", price: "$45-80", rating: "9.0", info: "Cruise with cabin" }
@@ -230,7 +223,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Ninh Binh", price: "$12-18", duration: "4h" }]
             },
             {
-                id: 16, city: "Ninh Binh", country: "Vietnam", lat: 20.2539, lng: 105.9750, duration: "2 days",
+                id: 15, city: "Ninh Binh", country: "Vietnam", lat: 20.2539, lng: 105.9750, duration: "2 days",
                 description: "Ha Long Bay on land",
                 hostels: [
                     { name: "Tam Coc Bungalow", price: "$10/night", rating: "9.1", info: "Rice field views" }
@@ -239,7 +232,7 @@
                 nextTravel: [{ mode: "🚂 Train", destination: "Hue", price: "$25-45", duration: "10-12h" }]
             },
             {
-                id: 17, city: "Hue", country: "Vietnam", lat: 16.4637, lng: 107.5909, duration: "2 days",
+                id: 16, city: "Hue", country: "Vietnam", lat: 16.4637, lng: 107.5909, duration: "2 days",
                 description: "Imperial city, royal tombs",
                 hostels: [
                     { name: "Vietnam Backpackers Hue", price: "$7/night", rating: "8.8", info: "Pool, social" }
@@ -248,7 +241,7 @@
                 nextTravel: [{ mode: "🚂 Train", destination: "Da Nang/Hoi An", price: "$8-15", duration: "2.5h" }]
             },
             {
-                id: 18, city: "Hoi An", country: "Vietnam", lat: 15.8801, lng: 108.3380, duration: "4 days",
+                id: 17, city: "Hoi An", country: "Vietnam", lat: 15.8801, lng: 108.3380, duration: "4 days",
                 description: "Lantern town, tailors, beach",
                 hostels: [
                     { name: "Tribee Bana", price: "$8/night", rating: "9.2", info: "Pool, bikes free" }
@@ -257,7 +250,7 @@
                 nextTravel: [{ mode: "✈️ Flight", destination: "Ho Chi Minh", price: "$35-70", duration: "1h 15m" }]
             },
             {
-                id: 19, city: "Ho Chi Minh City", country: "Vietnam", lat: 10.8231, lng: 106.6297, duration: "3 days",
+                id: 18, city: "Ho Chi Minh City", country: "Vietnam", lat: 10.8231, lng: 106.6297, duration: "3 days",
                 description: "Energetic metropolis, war history",
                 hostels: [
                     { name: "The Common Room", price: "$9/night", rating: "9.1", info: "Design hostel" }
@@ -267,7 +260,7 @@
             },
             // CAMBODIA
             {
-                id: 20, city: "Phnom Penh", country: "Cambodia", lat: 11.5564, lng: 104.9282, duration: "3 days",
+                id: 19, city: "Phnom Penh", country: "Cambodia", lat: 11.5564, lng: 104.9282, duration: "3 days",
                 description: "Sobering history, riverside charm",
                 hostels: [
                     { name: "Mad Monkey", price: "$7/night", rating: "8.9", info: "Pool, party vibe" }
@@ -276,7 +269,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Siem Reap", price: "$10-15", duration: "6h" }]
             },
             {
-                id: 21, city: "Siem Reap", country: "Cambodia", lat: 13.3671, lng: 103.8448, duration: "4 days",
+                id: 20, city: "Siem Reap", country: "Cambodia", lat: 13.3671, lng: 103.8448, duration: "4 days",
                 description: "Angkor Wat, ancient temples",
                 hostels: [
                     { name: "Lub d Siem Reap", price: "$10/night", rating: "9.0", info: "Pool, modern" }
@@ -285,7 +278,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Kampot", price: "$15-20", duration: "8h" }]
             },
             {
-                id: 22, city: "Kampot", country: "Cambodia", lat: 10.5943, lng: 104.1830, duration: "3 days",
+                id: 21, city: "Kampot", country: "Cambodia", lat: 10.5943, lng: 104.1830, duration: "3 days",
                 description: "Riverside chill, pepper farms",
                 hostels: [
                     { name: "Onederz Kampot", price: "$6/night", rating: "8.8", info: "River views" }
@@ -295,7 +288,7 @@
             },
             // MALAYSIA
             {
-                id: 23, city: "Kuala Lumpur", country: "Malaysia", lat: 3.1390, lng: 101.6869, duration: "3 days",
+                id: 22, city: "Kuala Lumpur", country: "Malaysia", lat: 3.1390, lng: 101.6869, duration: "3 days",
                 description: "Modern towers, diverse food",
                 hostels: [
                     { name: "BackHome KL", price: "$10/night", rating: "9.1", info: "Heritage building" }
@@ -304,7 +297,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Melaka", price: "$8-12", duration: "2h" }]
             },
             {
-                id: 24, city: "Melaka", country: "Malaysia", lat: 2.1896, lng: 102.2501, duration: "2 days",
+                id: 23, city: "Melaka", country: "Malaysia", lat: 2.1896, lng: 102.2501, duration: "2 days",
                 description: "Historic port city, UNESCO site",
                 hostels: [
                     { name: "Nomaps Hostel", price: "$9/night", rating: "9.0", info: "Central, modern" }
@@ -313,7 +306,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Cameron Highlands", price: "$15-20", duration: "5h" }]
             },
             {
-                id: 25, city: "Cameron Highlands", country: "Malaysia", lat: 4.4718, lng: 101.3762, duration: "2 days",
+                id: 24, city: "Cameron Highlands", country: "Malaysia", lat: 4.4718, lng: 101.3762, duration: "2 days",
                 description: "Tea plantations, cool climate",
                 hostels: [
                     { name: "Father's Guesthouse", price: "$8/night", rating: "8.9", info: "Cozy, tours" }
@@ -322,7 +315,7 @@
                 nextTravel: [{ mode: "🚌 Bus", destination: "Penang", price: "$12-18", duration: "4-5h" }]
             },
             {
-                id: 26, city: "Penang", country: "Malaysia", lat: 5.4164, lng: 100.3327, duration: "4 days",
+                id: 25, city: "Penang", country: "Malaysia", lat: 5.4164, lng: 100.3327, duration: "4 days",
                 description: "Best street food in Asia",
                 hostels: [
                     { name: "The 80s Guesthouse", price: "$9/night", rating: "8.9", info: "Heritage" }
@@ -331,7 +324,7 @@
                 nextTravel: [{ mode: "⛴️ Ferry", destination: "Langkawi", price: "$20-30", duration: "2.5h" }]
             },
             {
-                id: 27, city: "Langkawi", country: "Malaysia", lat: 6.3500, lng: 99.8000, duration: "3 days",
+                id: 26, city: "Langkawi", country: "Malaysia", lat: 6.3500, lng: 99.8000, duration: "3 days",
                 description: "Duty-free island paradise",
                 hostels: [
                     { name: "Temple Tree Resort", price: "$15/night", rating: "8.8", info: "Pool, heritage" }
@@ -341,7 +334,7 @@
             },
             // SINGAPORE
             {
-                id: 28, city: "Singapore", country: "Singapore", lat: 1.3521, lng: 103.8198, duration: "3 days",
+                id: 27, city: "Singapore", country: "Singapore", lat: 1.3521, lng: 103.8198, duration: "3 days",
                 description: "Futuristic city-state, food paradise",
                 hostels: [
                     { name: "Dream Lodge", price: "$20/night", rating: "8.3", info: "Little India" }
@@ -351,7 +344,7 @@
             },
             // INDONESIA
             {
-                id: 29, city: "Jakarta", country: "Indonesia", lat: -6.2088, lng: 106.8456, duration: "2 days",
+                id: 28, city: "Jakarta", country: "Indonesia", lat: -6.2088, lng: 106.8456, duration: "2 days",
                 description: "Chaotic capital, gateway to Java",
                 hostels: [
                     { name: "Cara Cara Inn", price: "$12/night", rating: "8.7", info: "Menteng area" }
@@ -360,7 +353,7 @@
                 nextTravel: [{ mode: "🚂 Train", destination: "Yogyakarta", price: "$20-40", duration: "7-8h" }]
             },
             {
-                id: 30, city: "Yogyakarta", country: "Indonesia", lat: -7.7956, lng: 110.3695, duration: "4 days",
+                id: 29, city: "Yogyakarta", country: "Indonesia", lat: -7.7956, lng: 110.3695, duration: "4 days",
                 description: "Cultural heart of Java, temples",
                 hostels: [
                     { name: "Otu Hostel", price: "$8/night", rating: "9.2", info: "Amazing design, pool" }
@@ -369,7 +362,7 @@
                 nextTravel: [{ mode: "✈️ Flight", destination: "Bali", price: "$40-80", duration: "1h 15m" }]
             },
             {
-                id: 31, city: "Bali - Ubud", country: "Indonesia", lat: -8.5069, lng: 115.2625, duration: "4 days",
+                id: 30, city: "Bali - Ubud", country: "Indonesia", lat: -8.5069, lng: 115.2625, duration: "4 days",
                 description: "Rice terraces, yoga, culture",
                 hostels: [
                     { name: "Puri Garden Hostel", price: "$12/night", rating: "9.0", info: "Pool, peaceful" }
@@ -378,7 +371,7 @@
                 nextTravel: [{ mode: "🛵 Scooter", destination: "Canggu", price: "$5-8", duration: "1h" }]
             },
             {
-                id: 32, city: "Bali - Canggu", country: "Indonesia", lat: -8.6478, lng: 115.1385, duration: "4 days",
+                id: 31, city: "Bali - Canggu", country: "Indonesia", lat: -8.6478, lng: 115.1385, duration: "4 days",
                 description: "Surf town, beach clubs, digital nomads",
                 hostels: [
                     { name: "The Farm Hostel", price: "$15/night", rating: "9.1", info: "Pool, co-working" }
@@ -387,7 +380,7 @@
                 nextTravel: [{ mode: "🛵 Scooter", destination: "Uluwatu", price: "$5-8", duration: "1h" }]
             },
             {
-                id: 33, city: "Bali - Uluwatu", country: "Indonesia", lat: -8.8291, lng: 115.0849, duration: "3 days",
+                id: 32, city: "Bali - Uluwatu", country: "Indonesia", lat: -8.8291, lng: 115.0849, duration: "3 days",
                 description: "Cliffside temples, epic surf",
                 hostels: [
                     { name: "Mule Malu Tropical Stay", price: "$18/night", rating: "9.0", info: "Pool, cliff views" }
@@ -396,7 +389,7 @@
                 nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Gili Islands", price: "$30-50", duration: "1.5-2h" }]
             },
             {
-                id: 34, city: "Gili Trawangan", country: "Indonesia", lat: -8.3510, lng: 116.0346, duration: "3 days",
+                id: 33, city: "Gili Trawangan", country: "Indonesia", lat: -8.3510, lng: 116.0346, duration: "3 days",
                 description: "Party island, no cars, diving",
                 hostels: [
                     { name: "Gili Castle", price: "$12/night", rating: "9.0", info: "Pool, parties" }
@@ -405,7 +398,7 @@
                 nextTravel: [{ mode: "⛴️ Boat", destination: "Gili Air", price: "$3-5", duration: "15m" }]
             },
             {
-                id: 35, city: "Gili Air", country: "Indonesia", lat: -8.3667, lng: 116.0833, duration: "3 days",
+                id: 34, city: "Gili Air", country: "Indonesia", lat: -8.3667, lng: 116.0833, duration: "3 days",
                 description: "Chill island, best of both worlds",
                 hostels: [
                     { name: "Captain Coconuts", price: "$12/night", rating: "8.9", info: "Beachfront" }
@@ -414,7 +407,7 @@
                 nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Lombok", price: "$15-25", duration: "30m" }]
             },
             {
-                id: 36, city: "Lombok", country: "Indonesia", lat: -8.5833, lng: 116.1167, duration: "4 days",
+                id: 35, city: "Lombok", country: "Indonesia", lat: -8.5833, lng: 116.1167, duration: "4 days",
                 description: "Quieter Bali, stunning beaches",
                 hostels: [
                     { name: "Kuta Lombok Hostel", price: "$10/night", rating: "8.8", info: "Kuta beach" }
@@ -423,7 +416,7 @@
                 nextTravel: [{ mode: "✈️ Flight", destination: "Labuan Bajo", price: "$60-120", duration: "1h" }]
             },
             {
-                id: 37, city: "Labuan Bajo (Komodo)", country: "Indonesia", lat: -8.4500, lng: 119.8833, duration: "3 days",
+                id: 36, city: "Labuan Bajo (Komodo)", country: "Indonesia", lat: -8.4500, lng: 119.8833, duration: "3 days",
                 description: "Dragons, diving, paradise ending 🐉",
                 hostels: [
                     { name: "Le Pirate", price: "$20/night", rating: "9.0", info: "Island vibes" }
