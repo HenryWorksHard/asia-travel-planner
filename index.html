@@ -63,7 +63,7 @@
             <div class="stat"><div class="stat-value">6</div><div class="stat-label">Months</div></div>
             <div class="stat"><div class="stat-value">8</div><div class="stat-label">Countries</div></div>
             <div class="stat"><div class="stat-value">37</div><div class="stat-label">Stops</div></div>
-            <div class="stat"><div class="stat-value">~$8,500</div><div class="stat-label">Est. Budget</div></div>
+            <div class="stat"><div class="stat-value">~$7,200</div><div class="stat-label">Est. Budget</div></div>
         </div>
     </header>
     
@@ -87,8 +87,8 @@
                 id: 1, city: "Bangkok", country: "Thailand", lat: 13.7563, lng: 100.5018, duration: "4 days",
                 description: "Start in the Land of Smiles",
                 hostels: [
-                    { name: "Lub d Bangkok Siam", price: "$12/night", rating: "9.2", info: "Rooftop pool, central" },
-                    { name: "NapPark Hostel", price: "$8/night", rating: "8.8", info: "Khao San area" }
+                    { name: "NapPark Hostel", price: "$8/night", rating: "8.8", info: "Khao San area, social" },
+                    { name: "Bed Station Hostel", price: "$6/night", rating: "8.5", info: "Near MRT, basic but clean" }
                 ],
                 activities: ["Grand Palace & Wat Phra Kaew", "Chatuchak Weekend Market", "Khao San Road", "Floating markets"],
                 nextTravel: [{ mode: "🚂 Train", destination: "Chiang Mai", price: "$18-40", duration: "10h (sleeper train)" }]
@@ -97,8 +97,8 @@
                 id: 2, city: "Chiang Mai", country: "Thailand", lat: 18.7883, lng: 98.9853, duration: "5 days",
                 description: "Temples, mountains, digital nomad hub",
                 hostels: [
-                    { name: "Stamps Backpackers", price: "$7/night", rating: "9.1", info: "Best social hostel" },
-                    { name: "Hug Hostel", price: "$9/night", rating: "8.9", info: "Great breakfast" }
+                    { name: "Deejai Backpackers", price: "$5/night", rating: "8.7", info: "Super cheap, Old City" },
+                    { name: "Stamps Backpackers", price: "$7/night", rating: "9.1", info: "Best social hostel" }
                 ],
                 activities: ["Doi Suthep Temple", "Elephant Nature Park", "Sunday Walking Street", "Muay Thai class", "Cooking class"],
                 nextTravel: [{ mode: "🚌 Minivan", destination: "Pai", price: "$5-8", duration: "3h" }]
@@ -127,8 +127,8 @@
                 id: 5, city: "Koh Phi Phi", country: "Thailand", lat: 7.7407, lng: 98.7784, duration: "3 days",
                 description: "Famous party island, Maya Bay",
                 hostels: [
-                    { name: "Ibiza House", price: "$15/night", rating: "8.5", info: "Party central" },
-                    { name: "Blanco Beach Bar", price: "$12/night", rating: "8.7", info: "Beachfront" }
+                    { name: "Phi Phi Hostel", price: "$10/night", rating: "8.3", info: "Basic but cheap" },
+                    { name: "Blanco Beach Bar", price: "$12/night", rating: "8.7", info: "Beachfront, worth it" }
                 ],
                 activities: ["Maya Bay day trip", "Viewpoint hike", "Snorkeling", "Beach parties", "Long Beach"],
                 nextTravel: [{ mode: "⛴️ Ferry", destination: "Koh Lanta", price: "$10-15", duration: "1h" }]
@@ -147,8 +147,8 @@
                 id: 7, city: "Koh Lipe", country: "Thailand", lat: 6.4833, lng: 99.3000, duration: "3 days",
                 description: "Thai Maldives, crystal clear water",
                 hostels: [
-                    { name: "Bloom Cafe & Hostel", price: "$18/night", rating: "8.8", info: "Walking street" },
-                    { name: "The Chic Lipe", price: "$25/night", rating: "9.0", info: "Beach bungalows" }
+                    { name: "Castaway Resort", price: "$12/night", rating: "8.4", info: "Budget fan bungalows" },
+                    { name: "Bloom Cafe & Hostel", price: "$18/night", rating: "8.8", info: "Walking street (splurge)" }
                 ],
                 activities: ["Sunrise Beach", "Snorkeling (best in Thailand!)", "Walking street", "Island hopping", "Sunset Beach bars"],
                 nextTravel: [{ mode: "⛴️ + 🚌", destination: "Surat Thani", price: "$40-60", duration: "6-7h" }]
@@ -336,19 +336,21 @@
                 id: 27, city: "Langkawi", country: "Malaysia", lat: 6.3500, lng: 99.8000, duration: "3 days",
                 description: "Duty-free island paradise",
                 hostels: [
-                    { name: "Temple Tree Resort", price: "$15/night", rating: "8.8", info: "Pool, heritage" }
+                    { name: "The Dorm Langkawi", price: "$9/night", rating: "8.5", info: "Pantai Cenang, basic" },
+                    { name: "Cenang Rooms", price: "$10/night", rating: "8.3", info: "Budget guesthouse" }
                 ],
                 activities: ["Sky Bridge & Cable Car", "Island hopping", "Pantai Cenang beach", "Mangrove kayak"],
                 nextTravel: [{ mode: "✈️ Flight", destination: "Singapore", price: "$40-80", duration: "1.5h" }]
             },
             // SINGAPORE
             {
-                id: 28, city: "Singapore", country: "Singapore", lat: 1.3521, lng: 103.8198, duration: "3 days",
-                description: "Futuristic city-state, food paradise",
+                id: 28, city: "Singapore", country: "Singapore", lat: 1.3521, lng: 103.8198, duration: "1 day",
+                description: "Quick transit stop, see the highlights",
                 hostels: [
-                    { name: "Dream Lodge", price: "$20/night", rating: "8.3", info: "Little India" }
+                    { name: "Beary Best Capsule", price: "$15/night", rating: "8.5", info: "Chinatown, cheap for SG" },
+                    { name: "5footway.inn", price: "$14/night", rating: "8.2", info: "Budget chain" }
                 ],
-                activities: ["Marina Bay Sands", "Gardens by the Bay", "Hawker centres", "Sentosa Island"],
+                activities: ["Marina Bay Sands viewpoint", "Gardens by the Bay", "Hawker centre dinner"],
                 nextTravel: [{ mode: "✈️ Flight", destination: "Jakarta", price: "$50-100", duration: "1h 40m" }]
             },
             // INDONESIA
@@ -356,7 +358,8 @@
                 id: 29, city: "Jakarta", country: "Indonesia", lat: -6.2088, lng: 106.8456, duration: "2 days",
                 description: "Chaotic capital, gateway to Java",
                 hostels: [
-                    { name: "Cara Cara Inn", price: "$12/night", rating: "8.7", info: "Menteng area" }
+                    { name: "Six Degrees Hostel", price: "$8/night", rating: "8.5", info: "Central, cheap" },
+                    { name: "Cara Cara Inn", price: "$12/night", rating: "8.7", info: "Menteng (upgrade)" }
                 ],
                 activities: ["Kota Tua (Old Town)", "National Museum", "Monas monument", "Street food"],
                 nextTravel: [{ mode: "🚂 Train", destination: "Yogyakarta", price: "$20-40", duration: "7-8h" }]
@@ -374,7 +377,8 @@
                 id: 31, city: "Bali - Ubud", country: "Indonesia", lat: -8.5069, lng: 115.2625, duration: "4 days",
                 description: "Rice terraces, yoga, culture",
                 hostels: [
-                    { name: "Puri Garden Hostel", price: "$12/night", rating: "9.0", info: "Pool, peaceful" }
+                    { name: "Onward Ubud", price: "$8/night", rating: "8.6", info: "Budget, central" },
+                    { name: "In Da Lodge", price: "$9/night", rating: "8.7", info: "Rice field views" }
                 ],
                 activities: ["Tegallalang rice terraces", "Ubud Monkey Forest", "Tirta Empul temple", "Yoga classes"],
                 nextTravel: [{ mode: "🛵 Scooter", destination: "Canggu", price: "$5-8", duration: "1h" }]
@@ -383,7 +387,8 @@
                 id: 32, city: "Bali - Canggu", country: "Indonesia", lat: -8.6478, lng: 115.1385, duration: "4 days",
                 description: "Surf town, beach clubs, digital nomads",
                 hostels: [
-                    { name: "The Farm Hostel", price: "$15/night", rating: "9.1", info: "Pool, co-working" }
+                    { name: "Kos One Hostel", price: "$8/night", rating: "8.6", info: "Budget, social" },
+                    { name: "Sedasa Canggu", price: "$10/night", rating: "8.8", info: "Pool, affordable" }
                 ],
                 activities: ["Surf lessons", "Beach clubs", "Echo Beach sunset", "Tanah Lot temple", "Cafe hopping"],
                 nextTravel: [{ mode: "🛵 Scooter", destination: "Uluwatu", price: "$5-8", duration: "1h" }]
@@ -392,7 +397,8 @@
                 id: 33, city: "Bali - Uluwatu", country: "Indonesia", lat: -8.8291, lng: 115.0849, duration: "3 days",
                 description: "Cliffside temples, epic surf",
                 hostels: [
-                    { name: "Mule Malu Tropical Stay", price: "$18/night", rating: "9.0", info: "Pool, cliff views" }
+                    { name: "Puri Uluwatu Villas", price: "$10/night", rating: "8.4", info: "Basic, good location" },
+                    { name: "Bingin Green View", price: "$12/night", rating: "8.6", info: "Budget, near beach" }
                 ],
                 activities: ["Uluwatu Temple & Kecak dance", "Single Fin Sunday", "Padang Padang beach", "Surfing"],
                 nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Gili Islands", price: "$30-50", duration: "1.5-2h" }]
@@ -428,7 +434,8 @@
                 id: 37, city: "Labuan Bajo (Komodo)", country: "Indonesia", lat: -8.4500, lng: 119.8833, duration: "3 days",
                 description: "Dragons, diving, paradise ending 🐉",
                 hostels: [
-                    { name: "Le Pirate", price: "$20/night", rating: "9.0", info: "Island vibes" }
+                    { name: "Dragon Dive Hostel", price: "$10/night", rating: "8.5", info: "Dive shop attached" },
+                    { name: "Ciao Hostel", price: "$12/night", rating: "8.7", info: "Central, social" }
                 ],
                 activities: ["Komodo National Park tour", "See Komodo dragons!", "Padar Island hike", "Manta ray diving", "Pink Beach"],
                 nextTravel: [{ mode: "✈️ Flight", destination: "Bali → Home", price: "$50 + intl", duration: "Varies" }]
