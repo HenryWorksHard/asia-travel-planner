@@ -22,6 +22,17 @@
         .sidebar-header h2 { font-size: 1.2rem; margin-bottom: 5px; }
         .sidebar-header p { font-size: 0.85rem; opacity: 0.7; }
         .weather-note { background: #2d4a3e; padding: 8px 12px; border-radius: 6px; margin-top: 8px; font-size: 0.75rem; }
+        .visa-section { background: #1a1a2e; margin-top: 10px; padding: 12px; border-radius: 8px; border: 1px solid #333; }
+        .visa-section h3 { font-size: 0.85rem; margin-bottom: 8px; color: #667eea; }
+        .visa-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.75rem; }
+        .visa-row:last-child { border-bottom: none; }
+        .visa-row .country { font-weight: 500; }
+        .visa-row .type { opacity: 0.8; }
+        .visa-row .cost { color: #4ade80; font-weight: 600; }
+        .visa-row.free .cost { color: #4ade80; }
+        .visa-row.paid .cost { color: #fbbf24; }
+        .visa-apply { background: #2d3a4f; padding: 8px; border-radius: 6px; margin-top: 8px; font-size: 0.7rem; }
+        .visa-apply strong { color: #667eea; }
         .country-section { border-bottom: 2px solid #667eea; }
         .country-header { background: linear-gradient(135deg, #1f4068 0%, #16213e 100%); padding: 12px 20px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
         .stop-card { padding: 15px 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.2s; }
@@ -72,8 +83,24 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>Travel Route</h2>
-                <p>Starting late February 2025</p>
+                <p>Starting February 25, 2026</p>
                 <div class="weather-note">☀️ <strong>Perfect timing!</strong> Feb-April is dry season for Thai islands (both coasts)</div>
+                <div class="visa-section">
+                    <h3>🛂 Visa Requirements (UK Passport)</h3>
+                    <div class="visa-row free"><span class="country">🇹🇭 Thailand</span><span class="type">Visa-free 60 days</span><span class="cost">FREE</span></div>
+                    <div class="visa-row paid"><span class="country">🇱🇦 Laos</span><span class="type">Visa on Arrival</span><span class="cost">$35</span></div>
+                    <div class="visa-row paid"><span class="country">🇻🇳 Vietnam</span><span class="type">e-Visa (apply online)</span><span class="cost">$25</span></div>
+                    <div class="visa-row paid"><span class="country">🇰🇭 Cambodia</span><span class="type">e-Visa or VOA</span><span class="cost">$30</span></div>
+                    <div class="visa-row free"><span class="country">🇲🇾 Malaysia</span><span class="type">Visa-free 90 days</span><span class="cost">FREE</span></div>
+                    <div class="visa-row free"><span class="country">🇸🇬 Singapore</span><span class="type">Visa-free 90 days</span><span class="cost">FREE</span></div>
+                    <div class="visa-row paid"><span class="country">🇮🇩 Indonesia</span><span class="type">Visa on Arrival</span><span class="cost">$35</span></div>
+                    <div class="visa-apply">
+                        <strong>📅 When to apply:</strong><br>
+                        • Vietnam e-Visa: ~March 25 (2 weeks before entry)<br>
+                        • Cambodia e-Visa: ~April 12 (or just get VOA at border)<br>
+                        • Official Vietnam site: evisa.xuatnhapcanh.gov.vn
+                    </div>
+                </div>
             </div>
             <div id="stops-list"></div>
         </aside>
