@@ -41,6 +41,7 @@
         .visa-apply strong { color: #667eea; }
         .onward-dot { font-size: 0.5rem; vertical-align: middle; }
         .onward-legend { background: #3d2a2a; padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 0.7rem; color: #f87171; border: 1px solid #5c3a3a; }
+        .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 5px 10px; }
         .country-section { border-bottom: 2px solid #667eea; }
         .country-header { background: linear-gradient(135deg, #1f4068 0%, #16213e 100%); padding: 12px 20px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
         .stop-card { padding: 15px 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.2s; }
@@ -157,10 +158,12 @@
             .stat-label { font-size: 0.6rem; }
             .route-overview-btn { padding: 8px 12px; font-size: 0.75rem; }
             
-            /* Layout - map smaller, list bigger */
+            /* Layout - map full, sidebar hidden by default */
             .main-container { flex-direction: column; height: auto; }
-            #map { height: 35vh; min-height: 200px; }
-            .sidebar { width: 100%; height: auto; max-height: 60vh; border-left: none; border-top: 1px solid #333; }
+            #map { height: calc(100vh - 70px); min-height: 300px; }
+            .sidebar { display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100vh - 70px); max-height: none; border-left: none; border-top: 1px solid #333; z-index: 500; background: #16213e; overflow-y: auto; }
+            .sidebar.open { display: block; }
+            .hamburger { display: block; }
             
             /* Sidebar header - compact */
             .sidebar-header { padding: 12px 15px; }
@@ -213,6 +216,7 @@
 </head>
 <body>
     <header class="header">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
         <h1>🌏 Asia Adventure</h1>
         <div class="stats">
             <div class="stat"><div class="stat-value">6</div><div class="stat-label">Months</div></div>
@@ -702,6 +706,14 @@
             if (stop) { map.setView([stop.lat, stop.lng], 8, { animate: true }); markers[id - 1].openPopup(); }
         }
         renderSidebar();
+        
+        // Sidebar toggle for mobile
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('open');
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.textContent = sidebar.classList.contains('open') ? '✕' : '☰';
+        }
         
         // Modal functions
         function toggleModal() {
