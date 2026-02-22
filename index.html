@@ -21,6 +21,12 @@
         .sidebar-header { padding: 20px; background: #1a1a2e; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 100; }
         .sidebar-header h2 { font-size: 1.2rem; margin-bottom: 5px; }
         .sidebar-header p { font-size: 0.85rem; opacity: 0.7; }
+        .search-box { margin-top: 10px; }
+        .search-box input { width: 100%; padding: 10px 12px; border: 1px solid #333; border-radius: 8px; background: #1a1a2e; color: #eee; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+        .search-box input:focus { border-color: #667eea; }
+        .search-box input::placeholder { color: #666; }
+        .stop-card.highlighted { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-left: 4px solid #fff; animation: pulse 1s ease-in-out; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         .weather-note { background: #2d4a3e; padding: 8px 12px; border-radius: 6px; margin-top: 8px; font-size: 0.75rem; }
         .visa-section { background: #1a1a2e; margin-top: 10px; padding: 12px; border-radius: 8px; border: 1px solid #333; }
         .visa-section h3 { font-size: 0.85rem; margin-bottom: 8px; color: #667eea; }
@@ -158,6 +164,7 @@
             .sidebar-header { padding: 12px 15px; }
             .sidebar-header h2 { font-size: 1rem; }
             .sidebar-header p { font-size: 0.75rem; }
+            .search-box input { padding: 8px 10px; font-size: 0.8rem; }
             
             /* Country sections - tighter */
             .country-header { padding: 10px 15px; font-size: 0.8rem; }
@@ -252,6 +259,9 @@
             <div class="sidebar-header">
                 <h2>📍 Itinerary</h2>
                 <p>Click a stop to see details</p>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search locations..." oninput="searchLocations(this.value)">
+                </div>
             </div>
             <div id="stops-list"></div>
         </aside>
@@ -698,6 +708,45 @@
                 }
             }
         });
+        
+        // Search functionality
+        let highlightTimeout;
+        function searchLocations(query) {
+            // Clear previous highlights
+            document.querySelectorAll('.stop-card').forEach(c => c.classList.remove('highlighted'));
+            clearTimeout(highlightTimeout);
+            
+            if (!query || query.length < 2) return;
+            
+            const searchTerm = query.toLowerCase();
+            const matches = travelRoute.filter(stop => 
+                stop.city.toLowerCase().includes(searchTerm) || 
+                stop.country.toLowerCase().includes(searchTerm) ||
+                stop.description.toLowerCase().includes(searchTerm)
+            );
+            
+            if (matches.length > 0) {
+                // Highlight matching cards
+                matches.forEach(match => {
+                    const card = document.querySelector(`.stop-card[data-id="${match.id}"]`);
+                    if (card) card.classList.add('highlighted');
+                });
+                
+                // Zoom to first match
+                const firstMatch = matches[0];
+                map.setView([firstMatch.lat, firstMatch.lng], 7, { animate: true });
+                markers[firstMatch.id - 1].openPopup();
+                
+                // Scroll to first match in sidebar
+                const firstCard = document.querySelector(`.stop-card[data-id="${firstMatch.id}"]`);
+                if (firstCard) firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Auto-clear highlight after 3 seconds
+                highlightTimeout = setTimeout(() => {
+                    document.querySelectorAll('.stop-card').forEach(c => c.classList.remove('highlighted'));
+                }, 3000);
+            }
+        }
     </script>
 </body>
 </html>
