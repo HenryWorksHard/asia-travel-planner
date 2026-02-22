@@ -217,7 +217,7 @@
         <div class="stats">
             <div class="stat"><div class="stat-value">6</div><div class="stat-label">Months</div></div>
             <div class="stat"><div class="stat-value">8</div><div class="stat-label">Countries</div></div>
-            <div class="stat"><div class="stat-value">37</div><div class="stat-label">Stops</div></div>
+            <div class="stat"><div class="stat-value">38</div><div class="stat-label">Stops</div></div>
             <div class="stat"><div class="stat-value">~$7,200</div><div class="stat-label">Est. Budget</div></div>
         </div>
         <button class="route-overview-btn" onclick="toggleModal()">
@@ -566,37 +566,47 @@
                 nextTravel: [{ mode: "✈️ Flight", destination: "Bali", price: "$40-70", duration: "45m" }]
             },
             {
-                id: 31, city: "Bali - Ubud", country: "Indonesia", lat: -8.5069, lng: 115.2625, duration: "4 days",
-                description: "Rice terraces, yoga, culture",
-                hostels: [
-                    { name: "Onward Ubud", price: "$8/night", rating: "8.6", info: "Budget, central" },
-                    { name: "In Da Lodge", price: "$9/night", rating: "8.7", info: "Rice field views" }
-                ],
-                activities: ["Tegallalang rice terraces", "Ubud Monkey Forest", "Tirta Empul temple", "Yoga classes"],
-                nextTravel: [{ mode: "🛵 Scooter", destination: "Canggu", price: "$5-8", duration: "1h" }]
-            },
-            {
-                id: 32, city: "Bali - Canggu", country: "Indonesia", lat: -8.6478, lng: 115.1385, duration: "4 days",
-                description: "Surf town, beach clubs, digital nomads",
+                id: 31, city: "Bali - Canggu", country: "Indonesia", lat: -8.6478, lng: 115.1385, duration: "2 days",
+                description: "Arrive & settle, beach sunsets",
                 hostels: [
                     { name: "Kos One Hostel", price: "$8/night", rating: "8.6", info: "Budget, social" },
                     { name: "Sedasa Canggu", price: "$10/night", rating: "8.8", info: "Pool, affordable" }
                 ],
-                activities: ["Surf lessons", "Beach clubs", "Echo Beach sunset", "Tanah Lot temple", "Cafe hopping"],
-                nextTravel: [{ mode: "🛵 Scooter", destination: "Uluwatu", price: "$5-8", duration: "1h" }]
+                activities: ["Echo Beach sunset", "Tanah Lot temple", "Surf lesson", "Cafe hopping", "Night out at Old Man's"],
+                nextTravel: [{ mode: "🛵 Scooter", destination: "Ubud", price: "$5-8", duration: "1h" }]
             },
             {
-                id: 33, city: "Bali - Uluwatu", country: "Indonesia", lat: -8.8291, lng: 115.0849, duration: "3 days",
-                description: "Cliffside temples, epic surf",
+                id: 32, city: "Bali - Ubud", country: "Indonesia", lat: -8.5069, lng: 115.2625, duration: "3 days",
+                description: "Rice terraces, jungle hikes, waterfalls 🌿",
                 hostels: [
-                    { name: "Puri Uluwatu Villas", price: "$10/night", rating: "8.4", info: "Basic, good location" },
-                    { name: "Bingin Green View", price: "$12/night", rating: "8.6", info: "Budget, near beach" }
+                    { name: "In Da Lodge", price: "$9/night", rating: "8.7", info: "Rice field views" },
+                    { name: "Onward Ubud", price: "$8/night", rating: "8.6", info: "Budget, central" }
                 ],
-                activities: ["Uluwatu Temple & Kecak dance", "Single Fin Sunday", "Padang Padang beach", "Surfing"],
-                nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Gili Islands", price: "$30-50", duration: "1.5-2h", route: "Fast boat from Padang Bai or Sanur Harbor → Gili Trawangan" }]
+                activities: ["Tegallalang rice terraces hike", "Campuhan Ridge Walk (sunrise)", "Tibumana Waterfall", "Tirta Empul temple", "Ubud Monkey Forest"],
+                nextTravel: [{ mode: "🛵 Scooter", destination: "Uluwatu", price: "$8-12", duration: "1.5h" }]
             },
             {
-                id: 34, city: "Gili Trawangan", country: "Indonesia", lat: -8.3510, lng: 116.0346, duration: "3 days",
+                id: 33, city: "Bali - Uluwatu", country: "Indonesia", lat: -8.8291, lng: 115.0849, duration: "2 days",
+                description: "Dramatic cliffs, hidden beaches",
+                hostels: [
+                    { name: "Bingin Green View", price: "$12/night", rating: "8.6", info: "Budget, near beach" },
+                    { name: "Puri Uluwatu Villas", price: "$10/night", rating: "8.4", info: "Basic, good location" }
+                ],
+                activities: ["Uluwatu Temple & Kecak dance at sunset", "Padang Padang beach", "Suluban Beach (cave entrance)", "Cliff walks"],
+                nextTravel: [{ mode: "🚗 Taxi", destination: "Nusa Dua", price: "$15-20", duration: "30m" }]
+            },
+            {
+                id: 34, city: "Bali - Nusa Dua", country: "Indonesia", lat: -8.8005, lng: 115.2317, duration: "3 days",
+                description: "Beach base + Nusa Penida day trip 🏝️",
+                hostels: [
+                    { name: "The Coop Bali", price: "$12/night", rating: "8.5", info: "Near Sanur, clean" },
+                    { name: "Sanur Budget Hostel", price: "$10/night", rating: "8.3", info: "Good for boat access" }
+                ],
+                activities: ["Nusa Penida day trip (Kelingking Beach, Angel's Billabong, Broken Beach)", "Snorkeling with mantas", "Water Blow", "Beach chill"],
+                nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Gili Islands", price: "$30-50", duration: "1.5-2h", route: "Fast boat from Sanur Harbor → Gili Trawangan" }]
+            },
+            {
+                id: 35, city: "Gili Trawangan", country: "Indonesia", lat: -8.3510, lng: 116.0346, duration: "3 days",
                 description: "Party island, no cars, diving",
                 hostels: [
                     { name: "Gili Castle", price: "$12/night", rating: "9.0", info: "Pool, parties" }
@@ -605,7 +615,7 @@
                 nextTravel: [{ mode: "⛴️ Boat", destination: "Gili Air", price: "$3-5", duration: "15m" }]
             },
             {
-                id: 35, city: "Gili Air", country: "Indonesia", lat: -8.3667, lng: 116.0833, duration: "3 days",
+                id: 36, city: "Gili Air", country: "Indonesia", lat: -8.3667, lng: 116.0833, duration: "3 days",
                 description: "Chill island, best of both worlds",
                 hostels: [
                     { name: "Captain Coconuts", price: "$12/night", rating: "8.9", info: "Beachfront" }
@@ -614,7 +624,7 @@
                 nextTravel: [{ mode: "⛴️ Fast Boat", destination: "Lombok", price: "$15-25", duration: "30m" }]
             },
             {
-                id: 36, city: "Lombok", country: "Indonesia", lat: -8.5833, lng: 116.1167, duration: "4 days",
+                id: 37, city: "Lombok", country: "Indonesia", lat: -8.5833, lng: 116.1167, duration: "4 days",
                 description: "Quieter Bali, stunning beaches",
                 hostels: [
                     { name: "Kuta Lombok Hostel", price: "$10/night", rating: "8.8", info: "Kuta beach" }
@@ -623,7 +633,7 @@
                 nextTravel: [{ mode: "✈️ Flight", destination: "Labuan Bajo", price: "$60-120", duration: "1h", route: "Flight from Lombok International (LOP) → Komodo Airport (LBJ)" }]
             },
             {
-                id: 37, city: "Labuan Bajo (Komodo)", country: "Indonesia", lat: -8.4500, lng: 119.8833, duration: "3 days",
+                id: 38, city: "Labuan Bajo (Komodo)", country: "Indonesia", lat: -8.4500, lng: 119.8833, duration: "3 days",
                 description: "Dragons, diving, paradise ending 🐉",
                 hostels: [
                     { name: "Dragon Dive Hostel", price: "$10/night", rating: "8.5", info: "Dive shop attached" },
