@@ -9,13 +9,13 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background: #1a1a2e; color: #eee; }
-        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-        .header h1 { font-size: 1.8rem; font-weight: 600; }
+        .header { background: #1a1a2e; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #333; }
+        .header h1 { font-size: 1.3rem; font-weight: 500; }
         .header .stats { display: flex; gap: 25px; flex-wrap: wrap; }
         .stat { text-align: center; }
-        .stat-value { font-size: 1.4rem; font-weight: 700; }
-        .stat-label { font-size: 0.7rem; opacity: 0.8; }
-        .main-container { display: flex; height: calc(100vh - 80px); }
+        .stat-value { font-size: 1.1rem; font-weight: 600; }
+        .stat-label { font-size: 0.65rem; opacity: 0.6; }
+        .main-container { display: flex; height: calc(100vh - 50px); }
         #map { flex: 1; height: 100%; }
         .sidebar { width: 400px; background: #16213e; overflow-y: auto; border-left: 1px solid #333; }
         .sidebar-header { padding: 20px; background: #1a1a2e; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 100; }
@@ -23,13 +23,13 @@
         .sidebar-header p { font-size: 0.85rem; opacity: 0.7; }
         .search-box { margin-top: 10px; }
         .search-box input { width: 100%; padding: 10px 12px; border: 1px solid #333; border-radius: 8px; background: #1a1a2e; color: #eee; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
-        .search-box input:focus { border-color: #667eea; }
+        .search-box input:focus { border-color: #2dd4bf; }
         .search-box input::placeholder { color: #666; }
-        .stop-card.highlighted { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-left: 4px solid #fff; animation: pulse 1s ease-in-out; }
+        .stop-card.highlighted { background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%); border-left: 4px solid #fff; animation: pulse 1s ease-in-out; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
         .weather-note { background: #2d4a3e; padding: 8px 12px; border-radius: 6px; margin-top: 8px; font-size: 0.75rem; }
         .visa-section { background: #1a1a2e; margin-top: 10px; padding: 12px; border-radius: 8px; border: 1px solid #333; }
-        .visa-section h3 { font-size: 0.85rem; margin-bottom: 8px; color: #667eea; }
+        .visa-section h3 { font-size: 0.85rem; margin-bottom: 8px; color: #2dd4bf; }
         .visa-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #333; font-size: 0.75rem; }
         .visa-row:last-child { border-bottom: none; }
         .visa-row .country { font-weight: 500; }
@@ -38,23 +38,23 @@
         .visa-row.free .cost { color: #4ade80; }
         .visa-row.paid .cost { color: #fbbf24; }
         .visa-apply { background: #2d3a4f; padding: 8px; border-radius: 6px; margin-top: 8px; font-size: 0.7rem; }
-        .visa-apply strong { color: #667eea; }
+        .visa-apply strong { color: #2dd4bf; }
         .onward-dot { font-size: 0.5rem; vertical-align: middle; }
         .onward-legend { background: #3d2a2a; padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 0.7rem; color: #f87171; border: 1px solid #5c3a3a; }
         .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 5px 10px; }
-        .country-section { border-bottom: 2px solid #667eea; }
+        .country-section { border-bottom: 2px solid #2dd4bf; }
         .country-header { background: linear-gradient(135deg, #1f4068 0%, #16213e 100%); padding: 12px 20px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
         .stop-card { padding: 15px 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.2s; }
         .stop-card:hover { background: #1a1a2e; }
-        .stop-card.active { background: #1f4068; border-left: 4px solid #667eea; }
+        .stop-card.active { background: #1f4068; border-left: 4px solid #2dd4bf; }
         .stop-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; }
-        .stop-number { background: #667eea; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; }
+        .stop-number { background: #2dd4bf; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; }
         .stop-name { font-size: 1rem; font-weight: 600; flex: 1; margin-left: 10px; }
         .stop-duration { background: #333; padding: 3px 8px; border-radius: 10px; font-size: 0.7rem; }
         .stop-details { margin-top: 12px; display: none; }
         .stop-card.active .stop-details { display: block; }
         .detail-section { margin-bottom: 12px; }
-        .detail-section h4 { font-size: 0.8rem; color: #667eea; margin-bottom: 6px; }
+        .detail-section h4 { font-size: 0.8rem; color: #2dd4bf; margin-bottom: 6px; }
         .detail-item { background: #1a1a2e; padding: 8px 10px; border-radius: 6px; margin-bottom: 4px; font-size: 0.8rem; }
         .detail-item .name { font-weight: 500; }
         .detail-item .info { opacity: 0.7; font-size: 0.75rem; }
@@ -73,20 +73,20 @@
         
         /* Route Overview Button */
         .route-overview-btn { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            border: none; 
-            color: white; 
-            padding: 10px 18px; 
-            border-radius: 10px; 
-            font-weight: 600; 
+            background: transparent; 
+            border: 1px solid #444; 
+            color: #eee; 
+            padding: 8px 14px; 
+            border-radius: 6px; 
+            font-weight: 500; 
             cursor: pointer; 
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            gap: 6px;
+            transition: all 0.2s;
         }
-        .route-overview-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+        .route-overview-btn:hover { background: #2a2a3e; border-color: #2dd4bf; }
         
         /* Modal Overlay */
         .modal-overlay {
@@ -151,17 +151,15 @@
         
         @media (max-width: 768px) {
             /* Header - compact */
-            .header { padding: 12px 15px; gap: 10px; }
-            .header h1 { font-size: 1.2rem; }
-            .header .stats { gap: 12px; }
-            .stat-value { font-size: 1rem; }
-            .stat-label { font-size: 0.6rem; }
-            .route-overview-btn { padding: 8px 12px; font-size: 0.75rem; }
+            .header { padding: 10px 12px; gap: 8px; }
+            .header h1 { font-size: 1rem; }
+            .header .stats { display: none; }
+            .route-overview-btn { padding: 6px 10px; font-size: 0.7rem; }
             
             /* Layout - map full, sidebar hidden by default */
-            .main-container { flex-direction: column; height: auto; }
-            #map { height: calc(100vh - 70px); min-height: 300px; }
-            .sidebar { display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100vh - 70px); max-height: none; border-left: none; border-top: 1px solid #333; z-index: 500; background: #16213e; overflow-y: auto; }
+            .main-container { flex-direction: column; height: calc(100vh - 50px); }
+            #map { height: 100%; flex: 1; }
+            .sidebar { display: none; position: fixed; top: 50px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100vh - 50px); max-height: none; border-left: none; border-top: 1px solid #333; z-index: 500; background: #16213e; overflow-y: auto; }
             .sidebar.open { display: block; }
             .hamburger { display: block; }
             
@@ -217,7 +215,7 @@
 <body>
     <header class="header">
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <h1>🌏 Asia Adventure</h1>
+        <h1>Grace's Asian Adventure</h1>
         <div class="stats">
             <div class="stat"><div class="stat-value">6</div><div class="stat-label">Months</div></div>
             <div class="stat"><div class="stat-value">8</div><div class="stat-label">Countries</div></div>
@@ -662,7 +660,7 @@
         function createMarkerIcon(n) {
             return L.divIcon({
                 className: 'custom-marker',
-                html: `<div style="background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:9px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${n}</div>`,
+                html: `<div style="background:linear-gradient(135deg,#2dd4bf,#14b8a6);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:9px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)">${n}</div>`,
                 iconSize: [22, 22], iconAnchor: [11, 11]
             });
         }
@@ -676,7 +674,7 @@
             markers.push(marker);
             routePoints.push([stop.lat, stop.lng]);
         });
-        L.polyline(routePoints, { color: '#667eea', weight: 2, opacity: 0.6, dashArray: '6,6' }).addTo(map);
+        L.polyline(routePoints, { color: '#2dd4bf', weight: 2, opacity: 0.6, dashArray: '6,6' }).addTo(map);
         
         function renderSidebar() {
             const container = document.getElementById('stops-list');
