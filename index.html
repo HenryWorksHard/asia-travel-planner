@@ -39,6 +39,8 @@
         .visa-row.paid .cost { color: #fbbf24; }
         .visa-apply { background: #2d3a4f; padding: 8px; border-radius: 6px; margin-top: 8px; font-size: 0.7rem; }
         .visa-apply strong { color: #667eea; }
+        .onward-dot { font-size: 0.5rem; vertical-align: middle; }
+        .onward-legend { background: #3d2a2a; padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 0.7rem; color: #f87171; border: 1px solid #5c3a3a; }
         .country-section { border-bottom: 2px solid #667eea; }
         .country-header { background: linear-gradient(135deg, #1f4068 0%, #16213e 100%); padding: 12px 20px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
         .stop-card { padding: 15px 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.2s; }
@@ -235,13 +237,14 @@
                 <div class="weather-note">☀️ <strong>Perfect timing!</strong> Feb-April is dry season for Thai islands (both coasts)</div>
                 <div class="visa-section" style="margin-top: 15px;">
                     <h3>🛂 Visa Requirements (UK Passport)</h3>
-                    <div class="visa-row free"><span class="country">🇹🇭 Thailand</span><span class="type">Visa-free 60 days</span><span class="cost">FREE</span></div>
+                    <div class="visa-row free"><span class="country">🇹🇭 Thailand <span class="onward-dot">🔴</span></span><span class="type">Visa-free 60 days</span><span class="cost">FREE</span></div>
                     <div class="visa-row paid"><span class="country">🇱🇦 Laos</span><span class="type">Visa on Arrival</span><span class="cost">$35</span></div>
                     <div class="visa-row paid"><span class="country">🇻🇳 Vietnam</span><span class="type">e-Visa (apply online)</span><span class="cost">$25</span></div>
                     <div class="visa-row paid"><span class="country">🇰🇭 Cambodia</span><span class="type">e-Visa or VOA</span><span class="cost">$30</span></div>
-                    <div class="visa-row free"><span class="country">🇲🇾 Malaysia</span><span class="type">Visa-free 90 days</span><span class="cost">FREE</span></div>
-                    <div class="visa-row free"><span class="country">🇸🇬 Singapore</span><span class="type">Visa-free 90 days</span><span class="cost">FREE</span></div>
-                    <div class="visa-row paid"><span class="country">🇮🇩 Indonesia</span><span class="type">Visa on Arrival</span><span class="cost">$35</span></div>
+                    <div class="visa-row free"><span class="country">🇲🇾 Malaysia <span class="onward-dot">🔴</span></span><span class="type">Visa-free 90 days</span><span class="cost">FREE</span></div>
+                    <div class="visa-row free"><span class="country">🇸🇬 Singapore <span class="onward-dot">🔴</span></span><span class="type">Visa-free 90 days</span><span class="cost">FREE</span></div>
+                    <div class="visa-row paid"><span class="country">🇮🇩 Indonesia <span class="onward-dot">🔴</span></span><span class="type">Visa on Arrival</span><span class="cost">$35</span></div>
+                    <div class="onward-legend">🔴 = Proof of onward/exit travel often required</div>
                     <div class="visa-apply">
                         <strong>📅 When to apply:</strong><br>
                         • Vietnam e-Visa: ~March 25 (2 weeks before entry)<br>
