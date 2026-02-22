@@ -42,6 +42,7 @@
         .onward-dot { font-size: 0.5rem; vertical-align: middle; }
         .onward-legend { background: #3d2a2a; padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 0.7rem; color: #f87171; border: 1px solid #5c3a3a; }
         .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 5px 10px; }
+        .mobile-only { display: none; }
         .country-section { border-bottom: 2px solid #2dd4bf; }
         .country-header { background: linear-gradient(135deg, #1f4068 0%, #16213e 100%); padding: 12px 20px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
         .stop-card { padding: 15px 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.2s; }
@@ -162,6 +163,8 @@
             .sidebar { display: none; position: fixed; top: 50px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100vh - 50px); max-height: none; border-left: none; border-top: 1px solid #333; z-index: 500; background: #16213e; overflow-y: auto; }
             .sidebar.open { display: block; }
             .hamburger { display: block; }
+            .header .route-overview-btn { display: none; }
+            .mobile-only { display: flex; width: 100%; justify-content: center; margin-top: 10px; }
             
             /* Sidebar header - compact */
             .sidebar-header { padding: 12px 15px; }
@@ -264,6 +267,9 @@
             <div class="sidebar-header">
                 <h2>📍 Itinerary</h2>
                 <p>Click a stop to see details</p>
+                <button class="route-overview-btn mobile-only" onclick="toggleModal(); toggleSidebar();">
+                    🗺️ Route & Visas
+                </button>
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="🔍 Search locations..." oninput="searchLocations(this.value)">
                 </div>
