@@ -42,7 +42,7 @@
         .onward-dot { font-size: 0.5rem; vertical-align: middle; }
         .onward-legend { background: #3d2a2a; padding: 8px; border-radius: 6px; margin-top: 10px; font-size: 0.7rem; color: #f87171; border: 1px solid #5c3a3a; }
         .hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 5px 10px; }
-        .mobile-only { display: none; }
+        .mobile-only { display: none; flex-wrap: wrap; gap: 8px; }
         .country-section { border-bottom: 2px solid #2dd4bf; }
         .country-header { background: linear-gradient(135deg, #1f4068 0%, #16213e 100%); padding: 12px 20px; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
         .stop-card { padding: 15px 20px; border-bottom: 1px solid #333; cursor: pointer; transition: background 0.2s; }
@@ -163,7 +163,7 @@
             .sidebar { display: none; position: fixed; top: 50px; left: 0; right: 0; bottom: 0; width: 100%; height: calc(100vh - 50px); max-height: none; border-left: none; border-top: 1px solid #333; z-index: 500; background: #16213e; overflow-y: auto; }
             .sidebar.open { display: block; }
             .hamburger { display: block; }
-            .header .route-overview-btn { display: none; }
+            .header .route-overview-btn, .header .esim-btn { display: none; }
             .mobile-only { display: flex; width: 100%; justify-content: center; margin-top: 10px; }
             .leaflet-control-zoom { display: none; }
             
@@ -206,6 +206,71 @@
             .weather-note { font-size: 0.65rem; padding: 6px 10px; }
         }
         
+        /* eSIM Modal Styles */
+        .esim-btn { margin-left: 8px; }
+        .esim-section { margin-top: 15px; }
+        .esim-section h3 { font-size: 0.9rem; margin-bottom: 8px; color: #eee; }
+        .esim-card {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .esim-card.recommended { border-color: #2dd4bf; box-shadow: 0 0 10px rgba(45, 212, 191, 0.2); }
+        .esim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .esim-name { font-weight: 600; font-size: 0.95rem; }
+        .esim-badge {
+            background: #2dd4bf;
+            color: #1a1a2e;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+        }
+        .esim-badge.orange { background: #f59e0b; }
+        .esim-badge.green { background: #10b981; }
+        .esim-badge.blue { background: #3b82f6; color: #fff; }
+        .esim-details { margin-bottom: 8px; }
+        .esim-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            font-size: 0.75rem;
+            border-bottom: 1px solid #2a2a3e;
+        }
+        .esim-row:last-child { border-bottom: none; }
+        .esim-value { color: #aaa; }
+        .esim-value.highlight { color: #4ade80; font-weight: 600; }
+        .esim-pros {
+            font-size: 0.7rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .esim-link {
+            display: inline-block;
+            background: #2dd4bf;
+            color: #1a1a2e;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .esim-link:hover { background: #14b8a6; transform: translateX(3px); }
+        .esim-tips {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 15px;
+        }
+        .esim-tips h4 { font-size: 0.85rem; margin-bottom: 8px; color: #2dd4bf; }
+        .esim-tips ul { list-style: none; padding: 0; margin: 0; }
+        .esim-tips li { font-size: 0.75rem; padding: 4px 0; border-bottom: 1px solid #374151; }
+        .esim-tips li:last-child { border-bottom: none; }
+        
         /* Extra small screens */
         @media (max-width: 380px) {
             .header h1 { font-size: 1rem; }
@@ -228,6 +293,9 @@
         </div>
         <button class="route-overview-btn" onclick="toggleModal()">
             🗺️ Route & Visas
+        </button>
+        <button class="route-overview-btn esim-btn" onclick="toggleEsimModal()">
+            📱 eSIM Guide
         </button>
     </header>
     
@@ -262,15 +330,116 @@
         </div>
     </div>
     
+    <!-- eSIM Guide Modal -->
+    <div class="modal-overlay" id="esimModal" onclick="closeEsimModalOutside(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2>📱 eSIM Options</h2>
+                <button class="modal-close" onclick="toggleEsimModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 0.9rem; margin-bottom: 12px;">One eSIM for <strong>all 8 countries</strong>: Thailand, Laos, Vietnam, Cambodia, Malaysia, Singapore, Indonesia</p>
+                <div class="weather-note" style="background: #2a4a5e;">💡 <strong>Pro tip:</strong> For 6 months, you'll need to top up or buy multiple plans. Most plans last 7-90 days.</div>
+                
+                <div class="esim-section">
+                    <h3>🏆 Best Overall: Airalo Asialink</h3>
+                    <div class="esim-card recommended">
+                        <div class="esim-header">
+                            <span class="esim-name">Airalo - Asialink</span>
+                            <span class="esim-badge">Most Popular</span>
+                        </div>
+                        <div class="esim-details">
+                            <div class="esim-row"><span>Coverage</span><span class="esim-value">✅ All 8 countries + more</span></div>
+                            <div class="esim-row"><span>Data</span><span class="esim-value">1GB-20GB options</span></div>
+                            <div class="esim-row"><span>Validity</span><span class="esim-value">7-30 days</span></div>
+                            <div class="esim-row"><span>Price</span><span class="esim-value highlight">$5-$42 USD</span></div>
+                        </div>
+                        <div class="esim-pros">✓ Easy setup via app ✓ Top-up anytime ✓ 24/7 support ✓ 4.7★ rating</div>
+                        <a href="https://www.airalo.com/asia-pacific/asialink" target="_blank" class="esim-link">View Plans →</a>
+                    </div>
+                </div>
+                
+                <div class="esim-section">
+                    <h3>♾️ Best Unlimited: Holafly</h3>
+                    <div class="esim-card">
+                        <div class="esim-header">
+                            <span class="esim-name">Holafly - Asia</span>
+                            <span class="esim-badge orange">Unlimited Data</span>
+                        </div>
+                        <div class="esim-details">
+                            <div class="esim-row"><span>Coverage</span><span class="esim-value">✅ Thailand, Vietnam, Cambodia, Malaysia, Singapore, Indonesia, Laos</span></div>
+                            <div class="esim-row"><span>Data</span><span class="esim-value">Unlimited</span></div>
+                            <div class="esim-row"><span>Validity</span><span class="esim-value">5-90 days</span></div>
+                            <div class="esim-row"><span>Price</span><span class="esim-value highlight">$19-$99 USD</span></div>
+                        </div>
+                        <div class="esim-pros">✓ No data caps ✓ Good for heavy users ✓ eSIM sharing (hotspot)</div>
+                        <a href="https://www.holafly.com/en/esim-asia" target="_blank" class="esim-link">View Plans →</a>
+                    </div>
+                </div>
+                
+                <div class="esim-section">
+                    <h3>💰 Best Value: Nomad</h3>
+                    <div class="esim-card">
+                        <div class="esim-header">
+                            <span class="esim-name">Nomad - Asia</span>
+                            <span class="esim-badge green">Great Value</span>
+                        </div>
+                        <div class="esim-details">
+                            <div class="esim-row"><span>Coverage</span><span class="esim-value">✅ All 8 countries</span></div>
+                            <div class="esim-row"><span>Data</span><span class="esim-value">1GB-10GB options</span></div>
+                            <div class="esim-row"><span>Validity</span><span class="esim-value">7-30 days</span></div>
+                            <div class="esim-row"><span>Price</span><span class="esim-value highlight">$4-$32 USD</span></div>
+                        </div>
+                        <div class="esim-pros">✓ Built-in VPN ✓ Works in China too ✓ Cheap top-ups</div>
+                        <a href="https://www.getnomad.app" target="_blank" class="esim-link">View Plans →</a>
+                    </div>
+                </div>
+                
+                <div class="esim-section">
+                    <h3>🌏 Budget Alternative: Simify</h3>
+                    <div class="esim-card">
+                        <div class="esim-header">
+                            <span class="esim-name">Simify - SE Asia</span>
+                            <span class="esim-badge blue">Budget Pick</span>
+                        </div>
+                        <div class="esim-details">
+                            <div class="esim-row"><span>Coverage</span><span class="esim-value">✅ Most SE Asian countries</span></div>
+                            <div class="esim-row"><span>Data</span><span class="esim-value">3GB-20GB options</span></div>
+                            <div class="esim-row"><span>Validity</span><span class="esim-value">15-30 days</span></div>
+                            <div class="esim-row"><span>Price</span><span class="esim-value highlight">$12-$45 AUD</span></div>
+                        </div>
+                        <div class="esim-pros">✓ AUD pricing ✓ 100% money-back guarantee</div>
+                        <a href="https://simify.com/collections/south-east-asia" target="_blank" class="esim-link">View Plans →</a>
+                    </div>
+                </div>
+                
+                <div class="esim-tips">
+                    <h4>📋 6-Month Strategy</h4>
+                    <ul>
+                        <li><strong>Option A:</strong> Buy Airalo Asialink 10GB ($27), top up monthly = ~$162 total</li>
+                        <li><strong>Option B:</strong> Buy Holafly 30-day unlimited x6 = ~$240 total</li>
+                        <li><strong>Option C:</strong> Mix local SIMs (cheap!) + eSIM backup for Laos/transit</li>
+                    </ul>
+                    <p style="margin-top: 10px; font-size: 0.75rem; opacity: 0.8;">💡 Download your chosen eSIM app before leaving! Set up while on WiFi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="main-container">
         <div id="map"></div>
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>📍 Itinerary</h2>
                 <p>Click a stop to see details</p>
-                <button class="route-overview-btn mobile-only" onclick="toggleModal(); toggleSidebar();">
-                    🗺️ Route & Visas
-                </button>
+                <div class="mobile-only" style="gap: 8px;">
+                    <button class="route-overview-btn" onclick="toggleModal(); toggleSidebar();">
+                        🗺️ Route & Visas
+                    </button>
+                    <button class="route-overview-btn" onclick="toggleEsimModal(); toggleSidebar();">
+                        📱 eSIM Guide
+                    </button>
+                </div>
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="🔍 Search locations..." oninput="searchLocations(this.value)">
                 </div>
@@ -734,11 +903,22 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 const modal = document.getElementById('routeModal');
-                if (modal.classList.contains('active')) {
-                    toggleModal();
-                }
+                const esimModal = document.getElementById('esimModal');
+                if (modal.classList.contains('active')) toggleModal();
+                if (esimModal.classList.contains('active')) toggleEsimModal();
             }
         });
+        
+        // eSIM Modal functions
+        function toggleEsimModal() {
+            const modal = document.getElementById('esimModal');
+            modal.classList.toggle('active');
+        }
+        function closeEsimModalOutside(event) {
+            if (event.target.id === 'esimModal') {
+                toggleEsimModal();
+            }
+        }
         
         // Search functionality
         let highlightTimeout;
